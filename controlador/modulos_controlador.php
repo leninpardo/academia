@@ -44,7 +44,7 @@ class modulos_controlador extends controller{
             $this->_modulos->inserta();
             $this->redireccionar('modulos');
         }
-        //$this->_vista->modulos_padre = $this->_modulos->seleccionar(0);
+       $this->_vista->modulos_padre = $this->_modulos->seleccionar(0);
         $this->_vista->titulo = 'Registrar Modulo';
         $this->_vista->action = BASE_URL . 'modulos/nuevo';
         $this->_vista->setJs(array('funciones_form'));
