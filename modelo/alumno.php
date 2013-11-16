@@ -5,7 +5,7 @@ class alumno extends Main {
     public $idalumno;
     public $idubigeo;
     public $idinstitucioneducativa;
-    public $nombres;
+    public $nombre;
     public $apellido_paterno;
     public $apellido_materno;
     public $dni;
@@ -14,21 +14,19 @@ class alumno extends Main {
     public $email;
     public $fecha_nacimiento;
     public $grado;  
-   
-    public $nombresyapellidos;
     
     public function selecciona() {
         if (is_null($this->idalumno)) {
             $this->idalumno = 0;
         }
-        if (is_null($this->nombres)) {
-            $this->nombres = '';
+        if (is_null($this->nombre)) {
+            $this->nombre = '';
         }
         if (is_null($this->dni)) {
             $this->dni = '';
         }
         
-        $datos = array($this->idalumno, $this->nombres, $this->dni);
+        $datos = array($this->idalumno, $this->nombre, $this->dni);
         $r = $this->get_consulta("sel_alumno", $datos);
         if ($r[1] == '') {
             $stmt = $r[0];
@@ -46,10 +44,9 @@ class alumno extends Main {
     }
 
     public function inserta() {
-        $datos = array(0, $this->nombres, $this->apellidos, $this->documento, $this->fecha_nacimiento,
-            $this->sexo, $this->telefono, $this->email, $this->estado_civil, $this->idprofesion, $this->idubigeo,
-            $this->direccion, $this->tipo);
-        $r = $this->get_consulta("ins_act_cliente", $datos);
+        $datos = array(0,$this->idubigeo,$this->idinstitucioneducativa,$this->nombre,  $this->apellido_paterno,
+            $this->apellido_materno,$this->dni, $this->sexo,$this->telefono_movil, $this->email, $this->fecha_nacimiento, $this->grado);
+        $r = $this->get_consulta("ins_act_alumno", $datos);
         if ($r[1] == '') {
             $stmt = $r[0];
         } else {
@@ -66,11 +63,9 @@ class alumno extends Main {
     }
 
     public function actualiza() {
-        $datos = array($this->idcliente, $this->nombres, $this->apellidos, $this->documento, $this->fecha_nacimiento,
-            $this->sexo, $this->telefono, $this->email, $this->estado_civil, $this->idprofesion, $this->idubigeo,
-            $this->direccion, $this->tipo);
-
-        $r = $this->get_consulta("ins_act_cliente", $datos);
+       $datos = array($this->idalumno,$this->idubigeo,$this->idinstitucioneducativa,$this->nombre,  $this->apellido_paterno,
+                   $this->apellido_materno,$this->dni, $this->sexo,$this->telefono_movil, $this->email, $this->fecha_nacimiento, $this->grado);
+        $r = $this->get_consulta("ins_act_alumno", $datos);
         if ($r[1] == '') {
             $stmt = $r[0];
         } else {

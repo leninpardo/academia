@@ -9,11 +9,11 @@ class asistencia_controlador extends controller{
             $this->redireccionar('error/access/5050');
         }
         parent::__construct();
-       $this->_horario = $this->cargar_modelo('horario');
+       //$this->_horario = $this->cargar_modelo('horario');
     }
 
     public function index() {
-        $this->_vista->datos = $this->_horario->selecciona();
+        //$this->_vista->datos = $this->_horario->selecciona();
         $this->_vista->setJs(array('funcion'));
         $this->_vista->setJs_Foot(array('scriptgrilla'));
         $this->_vista->renderizar('index');

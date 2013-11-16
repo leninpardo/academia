@@ -66,3 +66,20 @@
         <p><a href="<?php echo BASE_URL?>alumno/nuevo" class="btn btn-primary">Nuevo</a></p>
     </div>
     <?php } ?>
+ <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel"></h3>
+        </div>
+        <div class="modal-body text-justify">
+            <div id="bodymodal">
+                <div class="text-center">
+                    <img src="<?php echo BASE_URL ?>lib/img/loading.gif" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Ok</button>
+        </div>
+    </div>

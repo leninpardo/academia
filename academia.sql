@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50141
 File Encoding         : 65001
 
-Date: 2013-11-15 20:47:06
+Date: 2013-11-16 10:19:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,11 @@ CREATE TABLE `alumno` (
 -- ----------------------------
 -- Records of alumno
 -- ----------------------------
-INSERT INTO `alumno` VALUES ('1', '2', '1', 'FAMELA', 'PEREZ', 'NUÑEZ', '88885685', '1', '49586896', 'L@HOTMAIL.COM', '2013-08-06', '1', '1');
+INSERT INTO `alumno` VALUES ('1', '1969', '1', 'PEDRO', 'PEREZ', 'NUÃ‘EZ', '88885685', '1', '49586896', 'PEDRO@HOTMAIL.COM', '2013-08-06', '0', '1');
+INSERT INTO `alumno` VALUES ('2', '1903', '1', 'ANDERSON', 'GARCIA', 'MUÃ‘OZ', '4657688', '1', '996658656', 'SG@HOTMAIL.COM', '1997-06-25', '0', '1');
+INSERT INTO `alumno` VALUES ('3', '1394', '3', 'MARCIA', 'GODOY', 'ALAMO', '48586886', '0', '996658656', 'MR@HOTMAIL.COM', '1990-01-11', '0', '1');
+INSERT INTO `alumno` VALUES ('4', '1386', '2', 'FIORELA', 'VILLARREAL', 'COTRINA', '46792532', '0', '996658762', 'FVC@HOTMAIL.COM', '1990-01-25', '0', '1');
+INSERT INTO `alumno` VALUES ('5', '1978', '1', 'ROSA', 'PEREZ', 'GODOY', '46792543', '0', '996658656', 'RS@HOTMAIL.COM', '1986-01-10', '0', '1');
 
 -- ----------------------------
 -- Table structure for `amortizacion_pago`
@@ -276,11 +280,10 @@ CREATE TABLE `horario` (
 -- ----------------------------
 -- Records of horario
 -- ----------------------------
-INSERT INTO `horario` VALUES ('1', 'MAÃ‘ANA', 'LUNES', '7', '9', '1');
+INSERT INTO `horario` VALUES ('1', 'MAÑANA', 'LUNES', '7', '12', '1');
 INSERT INTO `horario` VALUES ('2', 'TARDE', 'MARTES', '2', '4', '1');
 INSERT INTO `horario` VALUES ('3', 'MAÃ‘ANA', 'MIERCOLES', '6', '10', '1');
 INSERT INTO `horario` VALUES ('4', 'MAÃ‘ANA', 'DOMINGO', '7', '10', '1');
-INSERT INTO `horario` VALUES ('5', '', '', '', '', '0');
 
 -- ----------------------------
 -- Table structure for `institucioneducativa`
@@ -3189,6 +3192,96 @@ BEGIN
 UPDATE institucioneducativa SET estado = 0
 WHERE Institucioneducativa_ID = p_id_institucioneducativa;
 END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `ins_act_alumno`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `ins_act_alumno`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ins_act_alumno`(xidalumno int(11),xidubigeo int(11),xidinstitucion int(11),xnombre varchar(255),xapellido_paterno varchar(255),xapellido_materno varchar(255), xdni int(11),xsexo varchar(2),xtelefono_movil int(11),xemail varchar(255),xfecha_nacimiento datetime,xgrado int(11))
+BEGIN
+
+declare xid int;
+ DECLARE error INTEGER  default 0;
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION  SET error = 1;
+DECLARE CONTINUE HANDLER FOR SQLWARNING  SET error = 1;
+START TRANSACTION;
+IF (xidalumno=0)
+	then
+		IF NOT EXISTS (SELECT Alumno_ID FROM alumno)
+			THEN
+				INSERT into alumno VALUES (
+				1,
+        xidubigeo,
+        xidinstitucion,
+				xnombre,
+				xapellido_paterno,
+        xapellido_materno,
+				xdni,
+				xsexo,
+				xtelefono_movil,
+				xemail,
+        xfecha_nacimiento,
+        xgrado,
+				1);
+				select 1 as ins_act_alumno;
+		ELSE
+				SET xid = (SELECT MAX(Alumno_ID) FROM alumno)+1;
+				INSERT into alumno(
+				Alumno_ID,
+        ubigeo_ID,
+        Institucioneducativa_ID, 
+				nombre,
+				apellido_paterno,
+        apellido_materno,
+				dni,
+        sexo,
+        telefono_movil,
+        email,        
+ 				fecha_nacimiento,
+        grado,
+				estado)
+				VALUES (
+				xid,
+        xidubigeo,
+        xidinstitucion,
+				xnombre,
+				xapellido_paterno,
+        xapellido_materno,
+				xdni,
+				xsexo,
+				xtelefono_movil,
+				xemail,
+        xfecha_nacimiento,
+			  xgrado,
+				1);
+				select xid as ins_act_alumno;
+			END if;
+ELSE
+		UPDATE alumno SET
+      ubigeo_ID=xidubigeo,  
+      Institucioneducativa_ID=xidinstitucion,
+			nombre=xnombre,
+			apellido_paterno=xapellido_paterno,
+      apellido_materno=xapellido_materno,
+			dni=xdni,
+			sexo=xsexo,
+			telefono_movil=xtelefono_movil,
+			email=xemail,
+      fecha_nacimiento=xfecha_nacimiento,
+      grado=xgrado
+
+		WHERE Alumno_ID=xidalumno;
+	END if;
+commit;
+if (error=1)
+THEN
+rollback;
+select "Se ha producido un error.";
+end if;
+end
 ;;
 DELIMITER ;
 

@@ -3,7 +3,7 @@
         display: block;
         text-align: center;
         padding-top: 3em;
-        color: green;
+        color: #06ACFF;
         font-size: 40px;
         line-height: 50px;
         font-weight: bold;
@@ -12,5 +12,5 @@
 </style>
 <div class="navbar-inner">
 <div id="logo">
-    EJEMPLOS DE MODULOS  <BR/> DE SISTEMAS DE INFORMACION
+    BIENVENIDOS   <BR/> AL SISTEMA AULA ABIERTA
 </div>

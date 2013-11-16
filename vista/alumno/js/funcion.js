@@ -2,7 +2,7 @@
         $( "#buscar" ).focus();
         
         function buscar(){
-            $.post(url+'cliente/buscador','cadena='+$("#buscar").val()+'&filtro='+$("#filtro").val(),function(datos){
+            $.post(url+'alumno/buscador','cadena='+$("#buscar").val()+'&filtro='+$("#filtro").val(),function(datos){
                 HTML = '<table id="table" class="table table-striped table-bordered table-hover sortable">'+
                             '<thead>'+
                             '<tr>'+
@@ -59,25 +59,24 @@
             $("#myModalLabel").html('');
             $("#bodymodal").html('<div class="text-center"><img src="'+url+'lib/img/loading.gif" /></div>');
             html='';titulo='';
-           $.post(url+'cliente/ver','idcliente='+id,function(datos){
-               if(datos[0]['TIPO']=="NATURAL"){
-                    titulo= 'Cliente: '+datos[0]['NOMBRES']+' '+datos[0]['APELLIDOS'];
+           $.post(url+'alumno/ver','idalumno='+id,function(datos){
+                    titulo= 'alumno: '+datos[0]['NOMBRE']+' '+datos[0]['APELLIDO_PATERNO'];
                     html+='<table align="center" cellpadding="10">';
                     html+= '<tr>';
                     html+= '<td>Nombres:</td>';
-                    html+= '<td>'+datos[0]['NOMBRES']+'</td>';
+                    html+= '<td>'+datos[0]['NOMBRE']+'</td>';
                     html+= '</tr>';
                     html+= '<tr>';
                     html+= '<td>Apellidos:</td>';
-                    html+= '<td>'+datos[0]['APELLIDOS']+'</td>';
+                    html+= '<td>'+datos[0]['APELLIDO_PATERNO']+' '+datos[0]['APELLIDO_MATERNO']+'</td>';
                     html+= '</tr>';
                     html+= '<tr>';
                     html+= '<td>Nro.de Documento:</td>';
-                    html+= '<td>'+datos[0]['DOCUMENTO']+'</td>';
+                    html+= '<td>'+datos[0]['DNI']+'</td>';
                     html+= '</tr>';
                     html+= '<tr>';
-                    html+= '<td>Direccion:</td>';
-                    html+= '<td>'+datos[0]['DIRECCION']+'</td>';
+                    html+= '<td>Institucion Educativa</td>';
+                    html+= '<td>'+datos[0]['INSTITUCION']+'</td>';
                     html+= '</tr>';
                     html+= '<tr>';
                     html+= '<td>Sexo:</td>';
@@ -88,10 +87,10 @@
                         html+= '<td>Masculino</td>';
                     }
                     html+= '</tr>'
-                    if(datos[0]['TELEFONO'] != null && datos[0]['TELEFONO'] != ' ' && datos[0]['TELEFONO'] != ''){
+                    if(datos[0]['TELEFONO_MOVIL'] != null && datos[0]['TELEFONO_MOVIL'] != ' ' && datos[0]['TELEFONO_MOVIL'] != ''){
                     html+= '<tr>';
                     html+= '<td>Telefono:</td>';
-                    html+= '<td>'+datos[0]['TELEFONO']+'</td>';
+                    html+= '<td>'+datos[0]['TELEFONO_MOVIL']+'</td>';
                     html+= '</tr>';
                     }
                     if(datos[0]['EMAIL'] != null && datos[0]['EMAIL'] != ' ' && datos[0]['EMAIL'] != ''){
@@ -136,53 +135,8 @@
                     html+= '<td>'+datos[0]['UBIGEO']+'</td>';
                     html+= '</tr>';
                     }
-               }
-               else{
-                    titulo= 'Cliente: '+datos[0]['NOMBRES'];
-                    html+='<table align="center" cellpadding="10">';
-                    html+= '<tr>';
-                    html+= '<td>Razon Social:</td>';
-                    html+= '<td>'+datos[0]['NOMBRES']+'</td>';
-                    html+= '</tr>';
-                    html+= '<tr>';
-                    html+= '<td>RUC:</td>';
-                    html+= '<td>'+datos[0]['DOCUMENTO']+'</td>';
-                    html+= '</tr>';
-                    html+= '<tr>';
-                    html+= '<td>Direccion:</td>';
-                    html+= '<td>'+datos[0]['DIRECCION']+'</td>';
-                    html+= '</tr>';
-                    if(datos[0]['TELEFONO'] != null && datos[0]['TELEFONO'] != ' ' && datos[0]['TELEFONO'] != ''){
-                    html+= '<tr>';
-                    html+= '<td>Telefono:</td>';
-                    html+= '<td>'+datos[0]['TELEFONO']+'</td>';
-                    html+= '</tr>';
-                    }
-                    if(datos[0]['EMAIL'] != null && datos[0]['EMAIL'] != ' ' && datos[0]['EMAIL'] != ''){
-                    html+= '<tr>';
-                    html+= '<td>Email:</td>';
-                    html+= '<td>'+datos[0]['EMAIL']+'</td>';
-                    html+= '</tr>';
-                    }
-                    if(datos[0]['REGION'] != null && datos[0]['REGION'] != ' ' && datos[0]['REGION'] != ''){
-                    html+= '<tr>';
-                    html+= '<td>Región:</td>';
-                    html+= '<td>'+datos[0]['REGION']+'</td>';
-                    html+= '</tr>';
-                    }
-                    if(datos[0]['PROVINCIA'] != null && datos[0]['PROVINCIA'] != ' ' && datos[0]['PROVINCIA'] != ''){
-                    html+= '<tr>';
-                    html+= '<td>Provincia:</td>';
-                    html+= '<td>'+datos[0]['PROVINCIA']+'</td>';
-                    html+= '</tr>';
-                    }
-                    if(datos[0]['UBIGEO'] != null && datos[0]['UBIGEO'] != ' ' && datos[0]['UBIGEO'] != ''){
-                    html+= '<tr>';
-                    html+= '<td>Ciudad:</td>';
-                    html+= '<td>'+datos[0]['UBIGEO']+'</td>';
-                    html+= '</tr>';
-                    }
-               }
+               
+           
                html+= '</table>';
                 $("#myModalLabel").html(titulo);
                 $("#bodymodal").html(html);
