@@ -1,6 +1,6 @@
 <?php
 
-class horario_controlador extends controller{
+class asistencia_controlador extends controller{
 
     private $_horario;
 

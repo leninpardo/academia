@@ -50,18 +50,18 @@ class empleado extends Main{
     }
 
     public function inserta() {
-        $datos = array($this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->dni, $this->fechanacimiento, 
-            $this->estadocivil, $this->usuario, $this->clave, $this->id_perfil);
-        $r = $this->get_consulta("ins_empleado", $datos);
+        $datos = array(0,$this->nombre, $this->apellido, $this->direccion, $this->dni, $this->fechanacimiento, 
+            $this->estadocivil, $this->usuario, $this->clave, $this->id_perfil,  $this->telefono);
+        $r = $this->get_consulta("ins_act_empleado", $datos);
         $error = $r[1];
         $r = null;
         return $error;
     }
 
     public function actualiza() {
-        $datos = array($this->id_empleado, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->dni, $this->fechanacimiento, 
-            $this->estadocivil, $this->usuario, $this->clave, $this->id_perfil);
-        $r = $this->get_consulta("act_empleado", $datos);
+        $datos = array($this->id_empleado, $this->nombre, $this->apellido, $this->direccion, $this->dni, $this->fechanacimiento, 
+            $this->estadocivil, $this->usuario, $this->clave, $this->id_perfil, $this->telefono);
+        $r = $this->get_consulta("ins_act_empleado", $datos);
         $error = $r[1];
         $r = null;
         return $error;
