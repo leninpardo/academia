@@ -36,7 +36,7 @@
     </script>
     <div class="text-center" id="footer">
             <div class="divfooter">
-                GHBus S.A.C. Copyright &copy; 2013
+                Academia Abierta
             </div>
             <div class="divfooter">
                 <?php echo session::get('perfil')?> <?php echo session::get('empleado')?> | <?php echo Main::get_servidor() ?>

@@ -15,7 +15,6 @@
         <tr>
             <th>Item</th>
             <th>turno</th>
-            <th>dia</th>
             <th>hora_inicio</th>
             <th>hora_fin</th>
             <th>Acciones</th>
@@ -26,7 +25,6 @@
             <tr>
                 <td><?php echo $i+1 ?></td>
                 <td><?php echo $this->datos[$i]['TURNO'] ?></td>
-               <td><?php echo $this->datos[$i]['DIA'] ?></td>
                 <td><?php echo $this->datos[$i]['HORA_INICIO'] ?></td>
                 <td><?php echo $this->datos[$i]['HORA_FIN'] ?></td>
                 <td>

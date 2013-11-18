@@ -2,6 +2,9 @@
 
 class asistencia_controlador extends controller{
 
+    private $_asistencia;
+    private $_alumnomatriculados;
+    private $_cursos;
     private $_horario;
 
     public function __construct() {
@@ -9,11 +12,14 @@ class asistencia_controlador extends controller{
             $this->redireccionar('error/access/5050');
         }
         parent::__construct();
-       //$this->_horario = $this->cargar_modelo('horario');
+       $this->_asistencia = $this->cargar_modelo('asistencia');
+       $this->_alumnomatriculados = $this->cargar_modelo('alumnomatriculados'); 
+       $this->_cursos = $this->cargar_modelo('cursos'); 
+       $this->_horario= $this->cargar_modelo('horario'); 
     }
 
     public function index() {
-        //$this->_vista->datos = $this->_horario->selecciona();
+        $this->_vista->datos = $this->_asistencia->selecciona();
         $this->_vista->setJs(array('funcion'));
         $this->_vista->setJs_Foot(array('scriptgrilla'));
         $this->_vista->renderizar('index');
@@ -32,18 +38,20 @@ class asistencia_controlador extends controller{
     }
 
     public function nuevo() {
-        if ($_POST['guardar'] == 1) {
+       /* if ($_POST['guardar'] == 1) {
             $this->_horario->turno = $_POST['turno'];
             $this->_horario->dia = $_POST['dia'];
             $this->_horario->hora_inicio = $_POST['hora_inicio'];
             $this->_horario->hora_fin = $_POST['hora_fin'];
             $this->_horario->inserta();
             $this->redireccionar('horario');
-        }
-        
-        $this->_vista->titulo = 'Registrar Horario';
-        $this->_vista->action = BASE_URL . 'horario/nuevo';
-        $this->_vista->setJs(array('funciones_form'));
+*/      
+        $this->_vista->datos_alumnomatriculados = $this->_alumnomatriculados->selecciona();
+        $this->_vista->datos_cursos = $this->_cursos->selecciona();
+        $this->_vista->datos_horario = $this->_horario->selecciona(); 
+        $this->_vista->titulo = 'Registrar Asistencia';
+        $this->_vista->action = BASE_URL . 'asistencia/nuevo';
+        $this->_vista->setJs(array('funciones_form','jquery-ui.min'));
         $this->_vista->renderizar('form');
     }
 
@@ -78,7 +86,21 @@ class asistencia_controlador extends controller{
        
         $this->redireccionar('horario');
     }
-   
+    public function ver(){
+        $this->_alumno->idalumno=$_POST['idalumno'];
+        echo json_encode($this->_alumno->selecciona());
+    }
+    
+    
+    
 }
 
 ?>
+
+
+
+
+
+
+
+
