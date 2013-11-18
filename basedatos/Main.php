@@ -7,7 +7,32 @@ class Main extends conexion {
         $bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
         return self::procedimientoAlmacenado($pa, $datos, $bd);
     }
-
+    
+public  function getQuery($sql)
+    {
+   
+    
+    try{
+        $bd = new conexion();
+    
+ $data = $bd->query($sql);
+ //echo count($data);
+ /*foreach ($data as $d)
+     {
+     echo $d[1];
+     }*/
+    return $data->fetchAll();
+    }
+    catch (PDOException $e)
+    {
+echo $e;
+    }
+    
+     //$data=$stmt->execute();
+     //return $data->fetchAll();
+  
+     
+    }
     // procedimiento almacenado para ejecutar consultas
     private function procedimientoAlmacenado($pa, $datos, $bd) {
         //convertimos a mayusculas los datos 
