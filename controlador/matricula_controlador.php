@@ -43,9 +43,6 @@ class matricula_controlador extends controller{
         $data=$this->_matricula->getQuery("SELECT *
                 from vista_matricula WHERE nombres like '%$buscar%' or Matricula_ID like '%$buscar%' or fecha_matricula LIKE '%$buscar%' or dni like '%$buscar%'
 or email LIKE'%$buscar%'");
-       // $data=$dat->fetchall();
-       
-    
         echo json_encode($data);
     }
 

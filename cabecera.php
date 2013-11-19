@@ -16,6 +16,7 @@
         <link href="<?php echo $_params['ruta_css']; ?>main.css" rel="stylesheet" charset="utf-8" />
         <link href="<?php echo $_params['ruta_css']; ?>jquery.motionCaptcha.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>fanbox.css" type="text/css" media="screen">
+           <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" type="text/css" media="screen">
         <script src="<?php echo $_params['ruta_js']; ?>jquery.js"></script>
         <script src="<?php echo $_params['ruta_js']; ?>validaciones.js"></script>
         <script src="<?php echo $_params['ruta_js']; ?>jquery.min.js"></script>
