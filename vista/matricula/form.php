@@ -29,8 +29,8 @@
                       </select>
                     </td>
                     <td>
-                       
-                        <input type="button" href="#myModal" class="btn btn-primary" value="nuevo" id="new_alumno" data-toggle="modal" />
+                      
+                     <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoAlumno" type="button" class="btn btn-primary" title="Insertar Alumno"><i class="icon-plus icon-white"></i></button>
                     </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
                       </select>
             </td>
               <td>
-          <input type="button" href="#ventana-apoderado" class="btn btn-primary" value="nuevo" id="new_apoderado" data-toggle="modal" />
+          <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoApoderado" type="button" class="btn btn-primary" title="Insertar Apoderado"><i class="icon-plus icon-white"></i></button>
               </td>
         </tr>
         
@@ -223,39 +223,46 @@
 </div>
 
   <!---->
-  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style=" width: 1200px; left: 300px; height:  auto;">
+  <div id="modalNuevoAlumno" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-35%;width: 62% ">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel"></h3>
+            <h3 id="myModalLabel">Registrar Alumno</h3>
         </div>
-        <div class="modal-body text-justify">
-           
-            <caption><h3>Registo de Alumnos<span id="msg"></span></h3></caption>
-              <table align="center" cellpadding="10">
+        <div class="modal-body">
+            <form method="post" action="" id="frm">
+                <input type="hidden" name="guardar" id="guardar" value="1"/>
+         
+                <div id="frm_cliente_natural">
+                    <form method="post" action="<?php if (isset($this->action)) echo $this->action ?>" id="frm_natural">
+                        <input type="hidden" name="guardar" id="guardar" value="1"/>
+                        <input type="hidden" name="tipo_cliente" value="natural"/>
+                        <input type="hidden" name="codigo" id="codigo"
+                               value="<?php if (isset($this->datos[0]['IDCLIENTE'])) echo $this->datos[0]['IDCLIENTE'] ?>"/>
+                        <table align="center" cellpadding="10">
                     <tr>
-                        <td><label>Nro.Documento:</label></td>
+                        <td><label>DNI:</label></td>
                         <td>
-                            <input class="input-large" type="text" name="documento" onKeyPress="return soloNumeros(event);"
-                            maxlength="8" id="nrodoc" value="<?php if(isset ($this->datos[0]['DNI']))echo $this->datos[0]['DNI']?>"/>
+                            <input class="input-large" type="text" name="dni" onKeyPress="return soloNumeros(event);"
+                            maxlength="8" id="dni" value="<?php if(isset ($this->datos[0]['DNI']))echo $this->datos[0]['DNI']?>"/>
                         </td>
                         <td><label>Nombre:</label></td>
                         <td>
-                            <input type="text" name="nombres" onkeypress="return soloLetras(event)"
+                            <input type="text" name="nombre" onkeypress="return soloLetras(event)"
                             id="nombre" value="<?php if(isset ($this->datos[0]['NOMBRE']))echo $this->datos[0]['NOMBRE']?>"/>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Apellidos_Paterno:</label></td>
                         <td>
-                            <input type="text" name="apellidos" onkeypress="return soloLetras(event)"
-                            id="apellidos" value="<?php if(isset ($this->datos[0]['APELLIDO_PATERNO']))echo $this->datos[0]['APELLIDO_PATERNO']?>"/>
-                        <td><label>:Apellidos_Paterno</label></td>
+                            <input type="text" name="apellido_paterno" onkeypress="return soloLetras(event)"
+                            id="apellido_paterno" value="<?php if(isset ($this->datos[0]['APELLIDO_PATERNO']))echo $this->datos[0]['APELLIDO_PATERNO']?>"/>
+                        <td><label>Apellidos_Paterno</label></td>
                         <td>
                             <input type="text" name="apellido_materno"
                             id="apellido_materno" value="<?php if(isset ($this->datos[0]['APELLIDO_MATERNO']))echo $this->datos[0]['APELLIDO_MATERNO']?>"/>
                         </td>
                     </tr>
-                    <tr>
+                     <tr>
                         <td><label>Sexo:</label></td>
                         <td>
                             <style>
@@ -273,11 +280,11 @@
                         </td>
                         <td><label>Telefono:</label></td>
                         <td>
-                            <input type="text" name="telefono" onKeyPress="return numeroTelefonico(event);"
-                            id="telefono" value="<?php if(isset ($this->datos[0]['TELEFONO_MOVIL']))echo $this->datos[0]['TELEFONO_MOVIL']?>"/>
+                            <input type="text" name="telefono_movil" onKeyPress="return numeroTelefonico(event);"
+                            id="telefono_movil" value="<?php if(isset ($this->datos[0]['TELEFONO_MOVIL']))echo $this->datos[0]['TELEFONO_MOVIL']?>"/>
                         </td>
                     </tr>
-                    <tr>
+                   <tr>
                         <td><label>Email:</label></td>
                         <td>
                             <input type="email" name="email"
@@ -288,174 +295,171 @@
                             <input readonly="readonly" name="fecha_nacimiento" type="text"
                             id="fechanac" value="<?php echo $this->datos[0]['FECHA_NACIMIENTO'] ?>"/>
                         </td>
-                    </tr>
-                    <tr>
-                        <!-- faltkkkkkkkkkkkkkkk-->
-                        <td><label>Inst-Educativa:</label></td>
-                        <td>
-                        <select name="profesion" id="profesion">
-                                <option></option>
-                                <?php for($i=0;$i<count($this->datos_profesiones);$i++){ ?>
-                                    <?php if( $this->datos[0]['IDPROFESION'] == $this->datos_profesiones[$i]['IDPROFESION'] ){ ?>
-                                <option value="<?php echo $this->datos_profesiones[$i]['IDPROFESION'] ?>" selected="selected"><?php echo utf8_encode($this->datos_profesiones[$i]['DESCRIPCION']) ?></option>
-                                    <?php } else { ?>
-                                <option value="<?php echo $this->datos_profesiones[$i]['IDPROFESION'] ?>"><?php echo utf8_encode($this->datos_profesiones[$i]['DESCRIPCION']) ?></option>
-                                    <?php } ?>
-                                <?php } ?>
-                            </select>
-                        </td>
-
-                    </tr>
-                    <tr>
+                    </tr> 
+                <tr>
                         <td><label>Region:</label></td>
                         <td>
                 <select placeholder="Seleccione..." class="regiones" id="regiones">
                     <?php if(isset ($this->datos)){ ?>
                         <?php for($i=0;$i<count($this->datos_regiones);$i++){ ?>
-                            <?php if( $this->datos[0]['IDREGION'] == $this->datos_regiones[0]['IDUBIGEO'] ){ ?>
-                        <option value="<?php echo $this->datos_regiones[$i]['IDUBIGEO'] ?>" selected="selected"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
+                            <?php if( $this->datos[0]['IDREGION'] == $this->datos_regiones[0]['UBIGEO_ID'] ){ ?>
+                        <option value="<?php echo $this->datos_regiones[$i]['UBIGEO_ID'] ?>" selected="selected"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
                             <?php } else { ?>
-                        <option value="<?php echo $this->datos_regiones[$i]['IDUBIGEO'] ?>"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
+                        <option value="<?php echo $this->datos_regiones[$i]['UBIGEO_ID'] ?>"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
                             <?php } ?>
                         <?php } ?>
                     <?php }else{ ?>
                         <?php for($i=0;$i<count($this->datos_regiones);$i++){ ?>
-                            <?php if( 1901 == $this->datos_regiones[$i]['IDUBIGEO'] ){ ?>
-                        <option value="<?php echo $this->datos_regiones[$i]['IDUBIGEO'] ?>" selected="selected"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
+                            <?php if( 1901 == $this->datos_regiones[$i]['UBIGEO_ID'] ){ ?>
+                        <option value="<?php echo $this->datos_regiones[$i]['UBIGEO_ID'] ?>" selected="selected"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
                             <?php } else { ?>
-                        <option value="<?php echo $this->datos_regiones[$i]['IDUBIGEO'] ?>"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
+                        <option value="<?php echo $this->datos_regiones[$i]['UBIGEO_ID'] ?>"><?php echo $this->datos_regiones[$i]['DESCRIPCION'] ?></option>
                             <?php } ?>
                         <?php } ?>
                     <?php } ?>
                     </select></td>
                         <td><label>Provincia:</label></td>
                         <td>
-
+                
                 <select placeholder="Seleccione..." required id="provincias" name="provincias" class="comboX">
                     <option></option>
                     <?php if(isset ($this->datos)){ ?>
                         <?php for($i=0;$i<count($this->datos_provincias);$i++){ ?>
-                            <?php if( $this->datos[0]['IDPROVINCIA'] == $this->datos_provincias[$i]['IDUBIGEO'] ){ ?>
-                        <option value="<?php echo $this->datos_provincias[$i]['IDUBIGEO'] ?>" selected="selected"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
+                            <?php if( $this->datos[0]['IDPROVINCIA'] == $this->datos_provincias[$i]['UBIGEO_ID'] ){ ?>
+                        <option value="<?php echo $this->datos_provincias[$i]['UBIGEO_ID'] ?>" selected="selected"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
                             <?php } else { ?>
-                        <option value="<?php echo $this->datos_provincias[$i]['IDUBIGEO'] ?>"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
+                        <option value="<?php echo $this->datos_provincias[$i]['UBIGEO_ID'] ?>"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
                             <?php } ?>
                         <?php } ?>
                     <?php }else{ ?>
                         <?php for($i=0;$i<count($this->datos_provincias);$i++){ ?>
-                            <?php if( 1968 == $this->datos_provincias[$i]['IDUBIGEO'] ){ ?>
-                        <option value="<?php echo $this->datos_provincias[$i]['IDUBIGEO'] ?>" selected="selected"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
+                            <?php if( 1968 == $this->datos_provincias[$i]['UBIGEO_ID'] ){ ?>
+                        <option value="<?php echo $this->datos_provincias[$i]['UBIGEO_ID'] ?>" selected="selected"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
                             <?php } else { ?>
-                        <option value="<?php echo $this->datos_provincias[$i]['IDUBIGEO'] ?>"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
+                        <option value="<?php echo $this->datos_provincias[$i]['UBIGEO_ID'] ?>"><?php echo $this->datos_provincias[$i]['DESCRIPCION'] ?></option>
                             <?php } ?>
                         <?php } ?>
                     <?php } ?>
                 </select>
                         </td>
                     </tr>
-                    <tr>
+                      
+               <tr>
                         <td><label>Ciudad:</label></td>
                         <td>
-
+                
                 <select placeholder="Seleccione..." required name="ubigeo" id="ciudades" class="comboX">
                     <option></option>
                     <?php if(count($this->datos_ubigeos)){ ?>
-                        <?php for($i=0;$i<count($this->datos_ubigeos);$i++){
+                        <?php for($i=0;$i<count($this->datos_ubigeos);$i++){ 
                             if($i!=0){?>
-                            <?php if( $this->datos[0]['IDUBIGEO'] == $this->datos_ubigeos[$i]['IDUBIGEO'] ){ ?>
-                        <option value="<?php echo $this->datos_ubigeos[$i]['IDUBIGEO'] ?>" selected="selected"><?php echo $this->datos_ubigeos[$i]['DESCRIPCION'] ?></option>
+                            <?php if( $this->datos[0]['UBIGEO_ID'] == $this->datos_ubigeos[$i]['UBIGEO_ID'] ){ ?>
+                        <option value="<?php echo $this->datos_ubigeos[$i]['UBIGEO_ID'] ?>" selected="selected"><?php echo $this->datos_ubigeos[$i]['DESCRIPCION'] ?></option>
                             <?php } else { ?>
-                        <option value="<?php echo $this->datos_ubigeos[$i]['IDUBIGEO'] ?>"><?php echo $this->datos_ubigeos[$i]['DESCRIPCION'] ?></option>
+                        <option value="<?php echo $this->datos_ubigeos[$i]['UBIGEO_ID'] ?>"><?php echo $this->datos_ubigeos[$i]['DESCRIPCION'] ?></option>
                             <?php } ?>
                         <?php } }?>
                     <?php } ?>
                 </select>
                         </td>
+                 <td><label>Inst-Educativa:</label></td> 
+                    <td>
+                        <select name="institucion" id="institucion">
+                                <option></option>
+                                <?php for($i=0;$i<count($this->datos_institucion);$i++){ ?>
+                                    <?php if( $this->datos[0]['INSTITUCIONEDUCATIVA_ID'] == $this->datos_institucion[$i]['INSTITUCIONEDUCATIVA_ID'] ){ ?>
+                                <option value="<?php echo $this->datos_institucion[$i]['INSTITUCIONEDUCATIVA_ID'] ?>" selected="selected"><?php echo utf8_encode($this->datos_institucion[$i]['NOMBRE']) ?></option>
+                                    <?php } else { ?>
+                                <option value="<?php echo $this->datos_institucion[$i]['INSTITUCIONEDUCATIVA_ID'] ?>"><?php echo utf8_encode($this->datos_institucion[$i]['NOMBRE']) ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                     </td>      
                     </tr>
-                </table>
-            
-       
-            </div>
-      <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+                 
+                        </table>
+                    </form>
+                </div>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="reg_alumno">Guardar</button>
+            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
+    </div>
         
     
   <!----->
     <!-- apoderados-->
 
-  <div id="ventana-apoderado" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="modalNuevoApoderado" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-35%;width: 62% ">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel"></h3>
+            <h3 id="myModalLabel">Registrar Apoderado</h3>
         </div>
-        <div class="modal-body text-justify">
-
-            <caption><h3>Registo de Apoderado<span id="msg"></span></h3></caption>
-              <form method="post" action="<?php if(isset ($this->action))echo $this->action ?>" id="frm">
-            <input type="hidden" name="guardar" id="guardar" value="1"/>
-            <input type="hidden" readonly="readonly" name="codigo" id="codigo"
-                    value="<?php if(isset ($this->datos[0]['APODERADO_ID']))echo $this->datos[0]['APODERADO_ID']?>"/>
-            
-               <table align="center" cellpadding="10" >
+        <div class="modal-body">
+            <form method="post" action="" id="frm">
+                <input type="hidden" name="guardar" id="guardar" value="1"/>
+         
+                <div id="frm_cliente_natural">
+                    <form method="post" action="<?php if (isset($this->action)) echo $this->action ?>" id="frm_natural">
+                        <input type="hidden" name="guardar" id="guardar" value="1"/>
+                        <input type="hidden" name="tipo_cliente" value="natural"/>
+                        <input type="hidden" name="codigo" id="codigo"
+                               value="<?php if (isset($this->datos[0]['IDCLIENTE'])) echo $this->datos[0]['IDCLIENTE'] ?>"/>
+                       <table align="center" cellpadding="10" >
                 <tr>
                     <td><label>nombre</label></td>
                     <td>
-                    <input type="text" name="nombre" onkeypress="return soloLetras(event)"
-                            id="nombre" value="<?php if(isset ($this->datos[0]['NOMBRE']))echo $this->datos[0]['NOMBRE']?>"/></td>
+                    <input type="text" name="nombrea" onkeypress="return soloLetras(event)"
+                            id="nombrea" value="<?php if(isset ($this->datos[0]['NOMBRE']))echo $this->datos[0]['NOMBRE']?>"/></td>
                 </tr>
                 <tr>
                     <td><label>Apellido_Paterno</label></td>
                     <td>
-                    <input type="text" name="apellido_paterno" onkeypress="return soloLetras(event)"
-                            id="apellido_paterno" value="<?php if(isset ($this->datos[0]['APELLIDO_PATERNO']))echo $this->datos[0]['APELLIDO_PATERNO']?>"/></td>
+                    <input type="text" name="apellido_paternoa" onkeypress="return soloLetras(event)"
+                            id="apellido_paternoa" value="<?php if(isset ($this->datos[0]['APELLIDO_PATERNO']))echo $this->datos[0]['APELLIDO_PATERNO']?>"/></td>
                 </tr>
-
+                
                 <tr>
                     <td><label>Apellido_Materno</label></td>
                     <td>
-                    <input type="text" name="apellido_materno"
-                            id="apellido_materno" value="<?php if(isset ($this->datos[0]['APELLIDO_MATERNO']))echo $this->datos[0]['APELLIDO_MATERNO']?>"/></td>
+                    <input type="text" name="apellido_maternoa" 
+                            id="apellido_maternoa" value="<?php if(isset ($this->datos[0]['APELLIDO_MATERNO']))echo $this->datos[0]['APELLIDO_MATERNO']?>"/></td>
                 </tr>
                 <tr>
                     <td><label>Direccion</label></td>
                     <td>
-                    <input type="text" name="direccion"
+                    <input type="text" name="direccion" 
                             id="direccion" value="<?php if(isset ($this->datos[0]['DIRECCION']))echo $this->datos[0]['DIRECCION']?>"/></td>
                 </tr>
                 <tr>
                     <td><label>Ocupacion</label></td>
                     <td>
-                    <input type="text" name="ocupacion"
+                    <input type="text" name="ocupacion" 
                             id="ocupacion" value="<?php if(isset ($this->datos[0]['OCUPACION']))echo $this->datos[0]['OCUPACION']?>"/></td>
                 </tr>
                 <tr>
                     <td><label>Fecha Nacimiento</label></td>
-                    <td>
-                    <input type="text" name="fecha_nacimiento"
-                            id="fecha_nacimiento" readonly="readonly" style="cursor: pointer"  value="<?php if(isset ($this->datos[0]['FECHA_NACIMIENTO']))echo $this->datos[0]['FECHA_NACIMIENTO']?>"/>
-                    </td>
+                  <td>
+                     <input readonly="readonly" name="fecha_nacimiento" type="text"
+                     id="fechanaca" value="<?php echo $this->datos[0]['FECHA_NACIMIENTO'] ?>"/>
+                 </td>
                 </tr>
-
+                
                 <tr>
                     <td><label>DNI</label></td>
                     <td>
-                    <input type="text" name="dni"
-                            id="dni" value="<?php if(isset ($this->datos[0]['DNI']))echo $this->datos[0]['DNI']?>"/></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="text-center">
-                    <p><button type="button" class="btn btn-primary" id="save">Guardar</button>
-                    <a href="<?php echo BASE_URL ?>apoderado" class="btn btn-info">Cancelar</a></p>
-                    </td>
+                    <input type="text" name="dnia" 
+                            id="dnia" value="<?php if(isset ($this->datos[0]['DNI']))echo $this->datos[0]['DNI']?>"/></td>
                 </tr>
             </table>
-        </form>
-
-
-            </div>
-      <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+         </form>
+                </div>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="reg_apoderado">Guardar</button>
+            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
+    </div>
+        
+    

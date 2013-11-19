@@ -38,9 +38,9 @@
                 </tr>
                 <tr>
                     <td><label>Fecha Nacimiento</label></td>
-                    <td>
-                    <input type="text" name="fecha_nacimiento" 
-                            id="fecha_nacimiento" readonly="readonly" style="cursor: pointer"  value="<?php if(isset ($this->datos[0]['FECHA_NACIMIENTO']))echo $this->datos[0]['FECHA_NACIMIENTO']?>"/>
+                   <td>
+                     <input readonly="readonly" name="fecha_nacimiento" type="text"
+                     id="fechanac" value="<?php echo $this->datos[0]['FECHA_NACIMIENTO'] ?>"/>
                     </td>
                 </tr>
                 
