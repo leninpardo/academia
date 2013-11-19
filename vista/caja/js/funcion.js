@@ -24,11 +24,19 @@
                      HTML = HTML + '<td>'+datos[i][3]+'</td>';
                      if(datos[i][4]==1)
                          {
-HTML = HTML + '<td> <a href="javascript:void(0)" onclick="cerrar('+datos[i][4]+')">Cerrar</td>';
+HTML = HTML + '<td> <a href="javascript:void(0)" onclick="cerrar('+datos[i][0]+')">Cerrar</td>';
                          }
                          if(datos[i][4]==2)
                              {
-                             HTML = HTML + '<td>::::::::::::::::::::</td>';
+                                 
+                             if(datos[i][2]==datos[i][5])
+                                 {
+ HTML = HTML + '<td> <a href="javascript:void(0)" onclick="reaperturar('+datos[i][0]+')">Reaperturar</td>';
+                                 }
+                                 else
+                                     {
+                             HTML = HTML + '<td>::::::</td>';
+                                     }
                              }
                       
    
@@ -53,12 +61,51 @@ HTML = HTML + '<td> <a href="javascript:void(0)" onclick="cerrar('+datos[i][4]+'
             buscar();
             $("#buscar").focus();
         });
-        
-    });
+         $("#ap_caja").click(function(){
+           
+            $.post(url+'caja/aperturar',function(datos){
+             if(datos==2)
+                 {
+                     alert("Caja existente o pasada, cierre su caja");
+                     // buscar();
+                 }
+                 else{
+                     alert("La caja se aperturo");
+                     buscar();
+                 }
+        },'json');
+       
+     ///////
+     
+   });
 
-function cerrar(id)
+
+
+
+
+  });
+        
+
+   
+
+     function cerrar(id)
 {
    $.post(url+'caja/cerrar','caja='+id,function(datos){
-     buscar();
-   });
+       if(datos==1)
+           {
+   window.location="caja";
+   }else{alert("Error a cerrar la caja");}
+    //buscar();
+   },'json');
+}
+
+function reaperturar(id)
+{
+   $.post(url+'caja/reaperturar','caja='+id,function(datos){
+       if(datos==1)
+           {
+   window.location="caja";
+   }else{alert("Error al reaperturar la caja");}
+   },'json');
+
 }

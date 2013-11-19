@@ -64,7 +64,7 @@
 	</div>
     <?php } else { ?>
 <div class="navbar-inner">
-        <p>No hay Alumnos Cronogramas de pagos</p>
+        <p>No hay Cronogramas de pagos</p>
         
     <?php } ?>
 

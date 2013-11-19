@@ -46,14 +46,7 @@ WHERE  cr.estado=1 and (nombre LIKE '%$buscar%' or apellido_paterno LIKE '%$busc
               $fecha=$_POST['fecha'];
               $monto=$_POST['monto'];
               $r=$this->amortizar->get_consulta("usp_cronograma",array(1,$fecha,$monto,$id));
-              //$stm=$r[0];
-              //$data=$stm->fetchAll();
-              //echo $data[0];
-              /*foreach ($data as $d)
-                  {
-                  echo $d[0];
-                  }*/
-             // echo $r[1];
+             
                if ($r[1] == '') {
                   $stmt = $r[0];
              $data=$stmt->fetchall();
@@ -74,14 +67,21 @@ WHERE  cr.estado=1 and (nombre LIKE '%$buscar%' or apellido_paterno LIKE '%$busc
        public function eliminar($id) {
                
               $r=$this->amortizar->get_consulta("usp_cronograma",array(2,'2013-12-02',0,$id));
-              //$stm=$r[0];
-              //$data=$stm->fetchAll();
-              //echo $data[0];
-              /*foreach ($data as $d)
-                  {
-                  echo $d[0];
-                  }*/
-             // echo $r[1];
+            
+               if ($r[1] == '') {
+                  $stmt = $r[0];
+             $data=$stmt->fetchall();
+               $e=$data[0][0];
+               $this->redireccionar('amortizacion');
+               }
+               else{
+                   die ($r[1]);
+               }
+       }
+          public function amortizar($id) {
+
+              $r=$this->amortizar->get_consulta("usp_amortizacion",array(session::get("idempleado"),$id));
+
                if ($r[1] == '') {
                   $stmt = $r[0];
              $data=$stmt->fetchall();

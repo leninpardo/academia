@@ -66,6 +66,7 @@ or email LIKE'%$buscar%'");
                          else{
                               $res=1;
                          }
+            
              $datos = array(1,$estudiante, $apoderado,$empleado, $res,$monto_incial, $total,$obs);
         $r = $this->_matricula->get_consulta("usp_matricula", $datos);
          if ($r[1] == '') {
@@ -104,7 +105,9 @@ or email LIKE'%$buscar%'");
               }
               
                }
-                $this->redireccionar('matricula');
+               
+
+               $this->redireccionar('matricula');
         } else {
             die($r[1]);
         }                  
