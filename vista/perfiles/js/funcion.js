@@ -2,7 +2,7 @@
         $( "#buscar" ).focus();
         
         function buscar(){
-            $.post(url+'perfiles/buscador','descripcion='+$("#buscar").val()+'&filtro='+$("#filtro").val(),function(datos){
+            $.post(url+'perfiles/buscador','cadena='+$("#buscar").val(),function(datos){
                 HTML = '<table id="table" class="table table-striped table-bordered table-hover sortable">'+
                         '<thead>'+
                             '<tr>'+
@@ -15,10 +15,10 @@
 
                 for(var i=0;i<datos.length;i++){
                     HTML = HTML + '<tr>';
-                    HTML = HTML + '<td>'+(i+1)+'</td>';
-                    HTML = HTML + '<td>'+datos[i].DESCRIPCION+'</td>';
-                    var editar=url+'perfiles/editar/'+datos[i].IDPERFIL; 
-                    var eliminar=url+'perfiles/eliminar/'+datos[i].IDPERFIL;   
+                    HTML = HTML + '<td>'+datos[i][0]+'</td>';
+                    HTML = HTML + '<td>'+datos[i][1]+'</td>';
+                    var editar=url+'perfiles/editar/'+datos[i][0];
+                    var eliminar=url+'perfiles/eliminar/'+datos[i][0];  
                     HTML = HTML + '<td><a style="margin-right:4px" href="javascript:void(0)" onclick="editar(\''+editar+'\')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>';
                     HTML = HTML + '<a href="javascript:void(0)" onclick="eliminar(\''+eliminar+'\')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>';
                     HTML = HTML + '</td>';
@@ -29,10 +29,12 @@
                 $("#jsfoot").html('<script src="'+url+'vista/web/js/scriptgrilla.js"></script>');
             },'json');
         }
-        $("#buscar").keypress(function(event){
-           if(event.which == 13){
+          $("#buscar").keyup(function(event){
+          /* if(event.which == 13){
                buscar();
-           } 
+           }*/
+            buscar();
+             
         });
         
         $("#btn_buscar").click(function(){

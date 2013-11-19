@@ -18,6 +18,7 @@
                     <th>Item</th>
                     <th>Fecha.</th>
                     <th>Alumno</th>
+                    <th>Justificacion</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,11 @@
                         <td><?php echo ($i+1) ?></td>
                         <td><?php echo $this->datos[$i]['FECHA'] ?></td>
                         <td><?php echo $this->datos[$i]['NOMBRE'].' '.$this->datos[$i]['APELLIDO_PATERNO'].' '.$this->datos[$i]['APELLIDO_MATERNO'] ?></td>
+                <?php if($this->datos[$i]['JUSTIFICACION']==1){ ?>  
+                        <td>Presente</td>       
+                <?php } else{?>
+                        <td>Ausente</td>
+                <?php }?>        
                     </tr>
                 <?php } ?>
             </tbody>

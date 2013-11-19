@@ -2,12 +2,7 @@
 <div class="navbar-inner text-center">
 <p><h3>Lista de Empleados</h3></p>
     <p>
-        <select class="list" id="filtro">
-            <option value="0">Nombres</option>
-            <option value="1">Apellidos</option>
-            <option value="2">Usuario</option>
-            <option value="3">Perfil</option>
-        </select>
+    
         <input type="text" class="input-xlarge" id="buscar">
         <button type="button" class="btn btn-primary" id="btn_buscar"><i class="icon-search icon-white"></i></button>
         <a href="<?php echo BASE_URL?>empleado/nuevo" class="btn btn-primary">Nuevo</a>

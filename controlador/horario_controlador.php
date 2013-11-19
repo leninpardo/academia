@@ -18,18 +18,16 @@ class horario_controlador extends controller{
         $this->_vista->setJs_Foot(array('scriptgrilla'));
         $this->_vista->renderizar('index');
     }
-   
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_horario->descripcion=$_POST['cadena'];
-            $this->_horario->modulo_padre='';
-        }else{
-            $this->_horario->descripcion='';
-            $this->_horario->modulo_padre=$_POST['cadena'];
-        }
-        
-        echo json_encode($this->_modulos->selecciona());
+
+       public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_horario->getQuery("SELECT *
+                from horario WHERE estado='1' AND (turno like '%$buscar%' or Horario_ID like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
+
 
     public function nuevo() {
         if ($_POST['guardar'] == 1) {

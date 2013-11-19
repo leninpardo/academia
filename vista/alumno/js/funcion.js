@@ -2,15 +2,16 @@
         $( "#buscar" ).focus();
         
         function buscar(){
-            $.post(url+'alumno/buscador','cadena='+$("#buscar").val()+'&filtro='+$("#filtro").val(),function(datos){
+            $.post(url+'alumno/buscador','cadena='+$("#buscar").val(),function(datos){
                 HTML = '<table id="table" class="table table-striped table-bordered table-hover sortable">'+
                             '<thead>'+
                             '<tr>'+
                                 '<th>Item</th>'+
-                                '<th>Tipo</th>'+
-                                '<th>Nombre y Apellidos / Razon Social</th>'+
-                                '<th>DNI / RUC</th>'+
-                                '<th>Direccion</th>'+
+                                '<th>Nombre y Apellidos</th>'+
+                                '<th>DNI</th>'+
+                                '<th>Telefono_movil</th>'+
+                                '<th>Email</th>'+
+                                '<th>Fecha_nacimiento</th>'+
                                 '<th>Acciones</th>'+
                             '</tr>'+
                             '</thead>'+
@@ -19,19 +20,25 @@
                 for(var i=0;i<datos.length;i++){
                     HTML = HTML + '<tr>';
 
-                    HTML = HTML + '<td>'+(i+1)+'</td>';
-                    HTML = HTML + '<td>'+datos[i].TIPO+'</td>';
-                    var nombres = datos[i].NOMBRES;
-                    var cliente = '';
-                    if(datos[i].APELLIDOS!=null){
-                        cliente = nombres+' '+datos[i].APELLIDOS;
+                    HTML = HTML + '<td>'+datos[i][0]+'</td>';
+                    var nombres =datos[i][3];
+                    var alumno = '';
+                    if(datos[i][4]!=null){
+                        alumno = nombres+' '+datos[i][4];
                     }else{
-                        cliente = nombres;
+                        alumno = nombres;
                     }
-                    HTML = HTML + '<td>'+cliente+'</td>';
-                    HTML = HTML + '<td>'+datos[i].DOCUMENTO+'</td>';
-                    HTML = HTML + '<td>'+datos[i].DIRECCION+'</td>';
-                    var editar=url+'cliente/editar/'+datos[i].IDCLIENTE; 
+                    if(datos[i][5]!=null){
+                        alumno = alumno+' '+datos[i][5];
+                    }else{
+                        alumno = alumno;
+                    }
+                    HTML = HTML + '<td>'+alumno+'</td>';
+                    HTML = HTML + '<td>'+datos[i][6]+'</td>';
+                    HTML = HTML + '<td>'+datos[i][8]+'</td>';
+                    HTML = HTML + '<td>'+datos[i][9]+'</td>';
+                    HTML = HTML + '<td>'+datos[i][10]+'</td>';
+                    var editar=url+'alumno/editar/'+datos[i][0]; 
                     HTML += '<td><a style="margin-right:4px" href="#myModal" role="button" data-toggle="modal" onclick="ver(\''+datos[i].IDCLIENTE+'\')" class="btn btn-warning"><i class="icon-eye-open icon-white"></i> Ver</a>';
                     HTML += '<a href="javascript:void(0)" onclick="editar(\''+editar+'\')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>';
                     HTML = HTML + '</td>';
@@ -42,10 +49,10 @@
                 $("#jsfoot").html('<script src="'+url+'vista/web/js/scriptgrilla.js"></script>');
             },'json');
         }
-        $("#buscar").keypress(function(event){
-           if(event.which == 13){
+        $("#buscar").keyup(function(event){
+         
                buscar();
-           } 
+           
         });
         
         $("#btn_buscar").click(function(){

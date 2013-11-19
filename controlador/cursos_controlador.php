@@ -19,16 +19,13 @@ class cursos_controlador extends controller{
         $this->_vista->renderizar('index');
     }
    
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_cursos->descripcion=$_POST['cadena'];
-            $this->_cursos->modulo_padre='';
-        }else{
-            $this->_cursos->descripcion='';
-            $this->_cursos->modulo_padre=$_POST['cadena'];
-        }
-        
-        echo json_encode($this->_modulos->selecciona());
+   public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_cursos->getQuery("SELECT *
+                from cursos WHERE estado='1' AND (nombre_curso like '%$buscar%' or Cursos_ID like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
 
     public function nuevo() {

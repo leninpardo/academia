@@ -62,7 +62,7 @@
                         <td><label>Fecha de Nacimiento:</label></td>
                         <td>
                             <input readonly="readonly" name="fecha_nacimiento" type="text"
-                            id="fecha_nacimiento" value="<?php echo $this->datos[0]['FECHA_NACIMIENTO'] ?>"/>
+                            id="fechanac" value="<?php echo $this->datos[0]['FECHA_NACIMIENTO'] ?>"/>
                         </td>
                     </tr>     
                    <tr>

@@ -8,15 +8,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
        <title>::.ACADEMIA.::</title>
         <meta name="keywords" content="" />
-        <meta name="description" content="" >
         <link href="<?php echo BASE_URL; ?>/lib/img/title.ico" rel="shortcut icon"/>
+        <meta name="description" content="" >
         <meta name="viewport" content="width=device-width">
         <link href="<?php echo $_params['ruta_css']; ?>bootstrap.css" rel="stylesheet" />
         <link href="<?php echo $_params['ruta_css']; ?>bootstrap-responsive.css" rel="stylesheet" />
         <link href="<?php echo $_params['ruta_css']; ?>main.css" rel="stylesheet" charset="utf-8" />
         <link href="<?php echo $_params['ruta_css']; ?>jquery.motionCaptcha.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>fanbox.css" type="text/css" media="screen">
+<<<<<<< HEAD
+        <link href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" rel="stylesheet" />
+=======
            <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" type="text/css" media="screen">
+>>>>>>> e9eb0222ae59b01dba21ac0c26699a46c62fa2b9
         <script src="<?php echo $_params['ruta_js']; ?>jquery.js"></script>
         <script src="<?php echo $_params['ruta_js']; ?>validaciones.js"></script>
         <script src="<?php echo $_params['ruta_js']; ?>jquery.min.js"></script>

@@ -2,10 +2,10 @@
 <div class="navbar-inner text-center">
 <p><h3>Lista de Modulos</h3></p>
     <p>
-        <select class="list" id="filtro">
+        <!--<select class="list" id="filtro">
             <option value="0">Descripcion</option>
             <option value="1">Modulo Padre</option>
-        </select>
+        </select>-->
         <input type="text" class="input-xlarge" id="buscar">
         <button type="button" class="btn btn-inverse" id="btn_buscar"><i class="icon-search icon-white"></i></button>
         <a href="<?php echo BASE_URL?>modulos/nuevo" class="btn btn-inverse">Nuevo</a>

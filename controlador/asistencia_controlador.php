@@ -38,14 +38,17 @@ class asistencia_controlador extends controller{
     }
 
     public function nuevo() {
-       /* if ($_POST['guardar'] == 1) {
-            $this->_horario->turno = $_POST['turno'];
-            $this->_horario->dia = $_POST['dia'];
-            $this->_horario->hora_inicio = $_POST['hora_inicio'];
-            $this->_horario->hora_fin = $_POST['hora_fin'];
-            $this->_horario->inserta();
-            $this->redireccionar('horario');
-*/      
+        
+        if ($_POST['guardar'] == 1) {
+            $this->_asistencia->idmatricula = $_POST['codigo_matricula'];
+            $this->_asistencia->idcurso = $_POST['codigo_curso'];
+            $this->_asistencia->idhorario = $_POST['codigo_horario'];
+            $this->_asistencia->fecha =date("Y-m-d");
+            $this->_asistencia->justificacion = $_POST['justificacion'];
+            $this->_asistencia->inserta();
+            $this->redireccionar('asistencia');
+        }
+        
         $this->_vista->datos_alumnomatriculados = $this->_alumnomatriculados->selecciona();
         $this->_vista->datos_cursos = $this->_cursos->selecciona();
         $this->_vista->datos_horario = $this->_horario->selecciona(); 

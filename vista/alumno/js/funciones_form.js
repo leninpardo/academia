@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $( "#fecha_nacimiento" ).datepicker({yearRange: '-65:-10',dateFormat: 'dd-mm-yy',changeMonth:true,changeYear:true,defaultDate: '1-1-1990'});
+    $("#fechanac" ).datepicker({yearRange: '-65:-10',dateFormat: 'dd-mm-yy',changeMonth:true,changeYear:true,defaultDate: '1-1-1990'});
     $( "#saveformnatural" ).click(function(){
         bval = true;        
         bval = bval && $( "#dni" ).required(); 
@@ -7,7 +7,7 @@ $(document).ready(function(){
         bval = bval && $( "#apellido_paterno" ).required();
         bval = bval && $( "#apellido_materno" ).required();
         bval = bval && $( "#email" ).required();
-        bval = bval && $( "#fecha_nacimiento" ).required();
+        bval = bval && $( "#fechanac" ).required();
         bval = bval && $( "#institucion" ).required();
         bval = bval && $( "#provincias" ).required();
         bval = bval && $( "#ciudades" ).required();

@@ -19,11 +19,13 @@ class institucioneducativa_controlador extends controller {
         $this->_vista->renderizar('index');
     }
     
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_perfiles->descripcion=$_POST['descripcion'];
-        }
-        echo json_encode($this->_perfiles->selecciona());
+   public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_institucioneducativa->getQuery("SELECT *
+                from institucioneducativa WHERE estado='1' AND (nombre like '%$buscar%' or Institucioneducativa_ID like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
     
     public function nuevo() {

@@ -26,20 +26,14 @@ class empleado_controlador extends controller{
         echo json_encode($this->_empleado->selecciona());
     }
     
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_empleado->nombre=$_POST['cadena'];
-        }
-        if($_POST['filtro']==1){
-            $this->_empleado->apellido=$_POST['cadena'];
-        }
-        if($_POST['filtro']==2){
-            $this->_empleado->usuario=$_POST['cadena'];
-        }
-        if($_POST['filtro']==3){
-            $this->_empleado->perfil=$_POST['cadena'];
-        }
-        echo json_encode($this->_empleado->selecciona());
+   public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_empleado->getQuery("SELECT *
+                from empleado WHERE estado='1' AND (nombre like '%$buscar%' or apellido like '%$buscar%'
+                    or id_empleado like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
 
     public function nuevo() {

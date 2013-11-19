@@ -1,7 +1,7 @@
     $(function(){
         $("#buscar").focus();
         function buscar(){
-            $.post(url+'empleado/buscador','cadena='+$("#buscar").val()+'&filtro='+$("#filtro").val(),function(datos){
+            $.post(url+'empleado/buscador','cadena='+$("#buscar").val(),function(datos){
                 HTML = '<table id="table" class="table table-striped table-bordered table-hover sortable">'+
                         '<thead>'+
                             '<tr>'+
@@ -18,12 +18,12 @@
                 for(var i=0;i<datos.length;i++){
                     HTML += '<tr>';
                     HTML += '<td>'+(i+1)+'</td>';
-                    HTML += '<td>'+datos[i].NOMBRE+'</td>';
-                    HTML += '<td>'+datos[i].APELLIDO+'</td>';
-                    HTML += '<td>'+datos[i].USUARIO+'</td>';
-                    HTML += '<td>'+datos[i].PPERFIL+'</td>';
-                    var editar=url+'empleado/editar/'+datos[i].ID_EMPLEADO; 
-                    var eliminar=url+'empleado/eliminar/'+datos[i].ID_EMPLEADO;   
+                    HTML += '<td>'+datos[i][1]+'</td>';
+                    HTML += '<td>'+datos[i][2]+'</td>';
+                    HTML += '<td>'+datos[i][3]+'</td>';
+                    HTML += '<td>'+datos[i][4]+'</td>';
+                    var editar=url+'empleado/editar/'+datos[i][0]; 
+                    var eliminar=url+'empleado/eliminar/'+datos[i][0];   
                     HTML += '<td><a style="margin-right:4px" href="#myModal" role="button" data-toggle="modal" onclick="ver(\''+datos[i].ID_EMPLEADO+'\')" class="btn btn-warning"><i class="icon-eye-open icon-white"></i> Ver</a>';
                     HTML += '<a style="margin-right:4px" href="javascript:void(0)" onclick="editar(\''+editar+'\')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>';
                     HTML += '<a href="javascript:void(0)" onclick="eliminar(\''+eliminar+'\')"class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>';
@@ -36,9 +36,9 @@
             },'json');
         }
         $("#buscar").keypress(function(event){
-           if(event.which == 13){
+           
                buscar();
-           } 
+           
         });
         
         $("#btn_buscar").click(function(){

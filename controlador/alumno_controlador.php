@@ -28,14 +28,15 @@ class alumno_controlador extends controller{
         $this->_vista->renderizar('index');
     }
     
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_alumno->nombres=$_POST['cadena'];
-        }
-        if($_POST['filtro']==1){
-            $this->_cliente->dni=$_POST['cadena'];
-        }
-        echo json_encode($this->_alumno->selecciona());
+   public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_alumno->getQuery("SELECT *
+                from alumno WHERE estado='1' AND (nombre like '%$buscar%' or Alumno_ID like '%$buscar%' or
+                  apellido_paterno like '%$buscar%' or  apellido_materno like '%$buscar%' or 
+                  dni like '%$buscar%' or email like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
 
     public function nuevo() {
@@ -105,7 +106,7 @@ class alumno_controlador extends controller{
         $this->_vista->titulo = 'Registrar alumno';
         $this->_vista->action = BASE_URL . 'alumno/nuevo';
         $this->_vista->setJs(array('funciones_form','jquery-ui'));
-        $this->_vista->setCss(array('jquery-ui'));
+        //$this->_vista->setCss(array('jquery-ui'));
         $this->_vista->renderizar('form');
     }
 

@@ -19,16 +19,13 @@ class modulos_controlador extends controller{
         $this->_vista->renderizar('index');
     }
     
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_modulos->descripcion=$_POST['cadena'];
-            $this->_modulos->modulo_padre='';
-        }else{
-            $this->_modulos->descripcion='';
-            $this->_modulos->modulo_padre=$_POST['cadena'];
-        }
-        
-        echo json_encode($this->_modulos->selecciona());
+   public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_modulos->getQuery("SELECT *
+                from modulos WHERE estado='1' AND (descripcion like '%$buscar%' or idmodulo like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
 
     public function nuevo() {

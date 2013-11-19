@@ -19,11 +19,13 @@ class perfiles_controlador extends controller {
         $this->_vista->renderizar('index');
     }
     
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_perfiles->descripcion=$_POST['descripcion'];
-        }
-        echo json_encode($this->_perfiles->selecciona());
+  public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_perfiles->getQuery("SELECT *
+                from perfil WHERE estado='1' AND (descripcion like '%$buscar%' or id_perfil like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
     
     public function nuevo() {

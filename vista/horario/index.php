@@ -2,9 +2,7 @@
 <div class="navbar-inner text-center">
 <p><h3>Lista de Horarios</h3></p>
     <p>
-        <select class="list" id="filtro">
-            <option value="0">Descripcion</option>
-        </select>
+     
         <input type="text" class="input-xlarge" id="buscar">
         <button type="button" class="btn btn-inverse" id="btn_buscar"><i class="icon-search icon-white"></i></button>
         <a href="<?php echo BASE_URL?>horario/nuevo" class="btn btn-inverse">Nuevo</a>

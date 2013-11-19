@@ -19,16 +19,14 @@ class apoderado_controlador extends controller{
         $this->_vista->renderizar('index');
     }
    
-    public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_horario->descripcion=$_POST['cadena'];
-            $this->_horario->modulo_padre='';
-        }else{
-            $this->_horario->descripcion='';
-            $this->_horario->modulo_padre=$_POST['cadena'];
-        }
-        
-        echo json_encode($this->_modulos->selecciona());
+   public function buscador(){
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_apoderado->getQuery("SELECT *
+                from apoderado WHERE estado='1' AND (nombre like '%$buscar%' or apellido_paterno like '%$buscar%'
+                    or Apoderado_ID like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
 
     public function nuevo() {

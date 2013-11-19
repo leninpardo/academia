@@ -2,10 +2,6 @@
     <?php if (isset($this->datos) && count($this->datos)) { ?>
 <h3>Lista de Alumnos</h3>
     <p>
-        <select style="width:250px" id="filtro">
-            <option value="0">Nombre</option>
-            <option value="1">DNI</option>
-        </select>
         <input type="text" class="input-xlarge" id="buscar">
         <button type="button" class="btn btn-success" id="btn_buscar"><i class="icon-search icon-white"></i></button>
         <a href="<?php echo BASE_URL?>alumno/nuevo" class="btn btn-success">Nuevo</a>
