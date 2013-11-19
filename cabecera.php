@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
     	<meta charset="utf-8" />
@@ -16,16 +14,15 @@
         <link href="<?php echo $_params['ruta_css']; ?>main.css" rel="stylesheet" charset="utf-8" />
         <link href="<?php echo $_params['ruta_css']; ?>jquery.motionCaptcha.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>fanbox.css" type="text/css" media="screen">
-<<<<<<< HEAD
+
 
         <link href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" rel="stylesheet" />
 
            <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" type="text/css" media="screen">
 
-=======
         <link href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo $_params['ruta_css']; ?>jquery-ui.custom.css" type="text/css" media="screen">
->>>>>>> cd944059a0788248fa73c98b14b4e2883e288f09
+
         <script src="<?php echo $_params['ruta_js']; ?>jquery.js"></script>
         <script src="<?php echo $_params['ruta_js']; ?>validaciones.js"></script>
         <script src="<?php echo $_params['ruta_js']; ?>jquery.min.js"></script>

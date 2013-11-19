@@ -64,6 +64,12 @@ HTML = HTML + '<td> <a href="javascript:void(0)" onclick="cerrar('+datos[i][0]+'
          $("#ap_caja").click(function(){
            
             $.post(url+'caja/aperturar',function(datos){
+                if(datos==null)
+                    {
+                    alert("Error al aperturar");
+                    }
+                    else
+                  {
              if(datos==2)
                  {
                      alert("Caja existente o pasada, cierre su caja");
@@ -73,6 +79,7 @@ HTML = HTML + '<td> <a href="javascript:void(0)" onclick="cerrar('+datos[i][0]+'
                      alert("La caja se aperturo");
                      buscar();
                  }
+                  }
         },'json');
        
      ///////
