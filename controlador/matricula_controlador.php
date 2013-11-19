@@ -13,12 +13,25 @@ class matricula_controlador extends controller{
 
  
     private $_matricula;
+    private $_alumno;
+    private $_regiones;
+    private $_provincias;
+    private $_ubigeos;
+    private $_institucioneducativa;
+    private $_apoderado;
     public function __construct() {
         if (!$this->acceso()) {
             $this->redireccionar('error/access/5050');
         }
         parent::__construct();
         $this->_matricula=$this->cargar_modelo("matricula");
+        $this->_alumno=  $this->cargar_modelo('alumno');
+        $this->_regiones = $this->cargar_modelo('regiones'); //
+        $this->_provincias = $this->cargar_modelo('provincias');//
+        $this->_ubigeos = $this->cargar_modelo('ubigeos');
+        $this->_institucioneducativa = $this->cargar_modelo('institucioneducativa');
+        $this->_apoderado = $this->cargar_modelo('apoderado');
+        
      
     }
 
@@ -29,6 +42,70 @@ class matricula_controlador extends controller{
         $this->_vista->renderizar('index');
     }
 
+    public function inserta_alu() {
+        $fecha = '';
+            $this->_alumno->nombre = $_POST['nombre'];
+            if(isset ($_POST['apellido_paterno'])){
+                $this->_alumno->apellido_paterno = $_POST['apellido_paterno'];
+            }else{
+                $this->_alumno->apellido_paterno = null;
+            }
+              if(isset ($_POST['apellido_materno'])){
+                $this->_alumno->apellido_materno = $_POST['apellido_materno'];
+            }else{
+                $this->_alumno->apellido_materno = null;
+            }
+            $this->_alumno->dni=$_POST['dni'];
+            
+             if(isset ($_POST['sexo'])){
+                $this->_alumno->sexo = $_POST['sexo'];
+            }else{
+                $this->_alumno->sexo = 1;
+            }
+            $this->_alumno->telefono_movil=$_POST['telefono_movil'];
+             $this->_alumno->email= $_POST['email'];
+            
+            if(isset ($_POST['fecha_nacimiento']) && $_POST['fecha_nacimiento']!=""){
+                $fecha = substr($_POST['fecha_nacimiento'], 6, 4) . '-';
+                $fecha .= substr($_POST['fecha_nacimiento'], 3, 2) . '-';
+                $fecha .= substr($_POST['fecha_nacimiento'], 0, 2);
+                $this->_alumno->fecha_nacimiento = $fecha;
+            }else{
+                $this->_alumno->fecha_nacimiento = '1990-01-01';
+            }
+            if(isset ($_POST['grado'])){
+                $this->_alumno->grado = $_POST['grado'];
+            }else{
+                $this->_alumno->grado = null;
+            }
+      
+            if(isset ($_POST['ubigeo']) && $_POST['ubigeo']!=""){
+                $this->_alumno->idubigeo = $_POST['ubigeo'];
+            }else{
+                $this->_alumno->idubigeo = 0;
+            }
+             if(isset ($_POST['institucion'])){
+                $this->_alumno->idinstitucioneducativa = $_POST['institucion'];
+            }else{
+                $this->_alumno->idinstitucioneducativa = 6;
+            }
+           $this->_alumno->inserta();
+           echo json_encode(array('x_idcliente'=>$datos[0]['X_IDCLIENTE'])); 
+    }
+
+      public function inserta_apo() {
+            $this->_apoderado->nombre = $_POST['nombre'];
+            $this->_apoderado->apellido_paterno = $_POST['apellido_paterno'];
+            $this->_apoderado->apellido_materno = $_POST['apellido_materno'];
+            $this->_apoderado->direccion = $_POST['direccion'];
+            $this->_apoderado->ocupacion = $_POST['ocupacion'];
+            $this->_apoderado->fecha_nacimiento = $_POST['fecha_nacimiento'];
+            $this->_apoderado->dni = $_POST['dni'];
+            $this->_apoderado->inserta();
+           echo json_encode(array('x_idcliente'=>$datos[0]['X_IDCLIENTE'])); 
+          
+      }
+    
     public function ver(){
         $idm=$_POST['id'];
 
@@ -127,6 +204,20 @@ from alumno");
         $this->_vista->data_cursos=$this->_matricula->getQuery("select * from cursos");
         $this->_vista->data_horarios=$this->_matricula->getQuery("select * from horario");
       
+        
+                  
+        $this->_regiones->idpais = 193;
+        $this->_vista->datos_regiones = $this->_regiones->selecciona();
+        
+        $this->_provincias->codigo_region = 1901;
+        $this->_vista->datos_provincias = $this->_provincias->selecciona();
+        
+        $this->_ubigeos->codigo_provincia = 1968;
+        $this->_vista->datos_ubigeos = $this->_ubigeos->selecciona();
+        $this->_vista->datos_institucion = $this->_institucioneducativa->selecciona();    
+        
+                    
+
         $this->_vista->titulo = 'Registrar Matriculas';
         $this->_vista->action = BASE_URL . 'matricula/nuevo';
         $this->_vista->setJs(array('funciones_form','jquery-ui.min'));
