@@ -205,7 +205,7 @@ from alumno");
         $this->_vista->data_horarios=$this->_matricula->getQuery("select * from horario");
       
         
-                  
+          
         $this->_regiones->idpais = 193;
         $this->_vista->datos_regiones = $this->_regiones->selecciona();
         
@@ -216,8 +216,6 @@ from alumno");
         $this->_vista->datos_ubigeos = $this->_ubigeos->selecciona();
         $this->_vista->datos_institucion = $this->_institucioneducativa->selecciona();    
         
-                    
-
         $this->_vista->titulo = 'Registrar Matriculas';
         $this->_vista->action = BASE_URL . 'matricula/nuevo';
         $this->_vista->setJs(array('funciones_form','jquery-ui.min'));

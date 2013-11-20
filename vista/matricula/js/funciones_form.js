@@ -169,7 +169,7 @@ $(function() {
                       html="<tr>";
                        html+="<td><input type='hidden' name='cursos_id[]' value='"+id+"'/>"+id+"</td>";
                      // html+="<td><input type='hidden' name='curso_id[]' id='curso_id[]' value='"+id+"' />"+id+"</td>";
-                      html+="<td>"+curso+"</td><td>eliminar</td></tr>";
+                      html+="<td>"+curso+"</td><td><a class='btn btn-danger delete'><i class='icon-trash icon-white'></i></a></td></tr>";
                       $("#lista_cursos").append(html);
                     }
                     else
@@ -178,6 +178,11 @@ $(function() {
                         }
         }
    });
+   
+    $(".delete").live('click', function() {
+        var i = $(this).parent().parent().index();
+        $("#lista_cursos tbody tr:eq(" + i + ")").remove();
+    });
 /*$('#fecha_p').datetimepicker({
       language: 'pt-BR'
     });*/

@@ -213,7 +213,7 @@
         
         <tr>
             <td colspan="2" align="center">
-                <p><button type="submit" class="btn btn-inverse" id="save">Guardar</button>
+                <p><button type="button" class="btn btn-inverse" id="save">Guardar</button>
                 <a href="<?php echo BASE_URL ?>matricula" class="btn btn-inverse">Cancelar</a></p>
             </td>
         </tr>
