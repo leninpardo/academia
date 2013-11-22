@@ -10,19 +10,14 @@ class asistencia extends Main {
     public $idhorario;
     public $fecha;
     public $justificacion;
+    public $turno;
 
     public function selecciona() {
-        if (is_null($this->idasistencia)) {
-            $this->idasistencia = 0;
+        if (is_null($this->turno)) {
+            $this->turno =0;
         }
-        if (is_null($this->cursos)) {
-            $this->cursos = '';
-        }
-        if (is_null($this->alumno)) {
-            $this->alumno = '';
-        }
-        
-        $datos = array($this->idasistencia, $this->cursos, $this->alumno);
+          
+        $datos = array($this->turno);
         $r = $this->get_consulta("sel_asistencia", $datos);
         if ($r[1] == '') {
             $stmt = $r[0];
@@ -40,7 +35,7 @@ class asistencia extends Main {
     }
 
     public function inserta() {
-        $datos = array($this->idmatricula,$this->idcurso,$this->idhorario,$this->fecha,$this->justificacion);
+        $datos = array($this->idmatricula,$this->idhorario,$this->fecha,$this->justificacion);
         $r = $this->get_consulta("ins_asistencia", $datos);
         if ($r[1] == '') {
             $stmt = $r[0];

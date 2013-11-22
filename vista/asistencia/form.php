@@ -3,21 +3,9 @@
      <input type="hidden" name="guardar" id="guardar" value="1"/> 
  <?php if (isset($this->datos_alumnomatriculados) && count($this->datos_alumnomatriculados)) { ?>
 <h3>Registrar Asistencia</h3>
-
    <p>
-    
-     <select name="codigo_curso" id="codigo_curso" >
-                                <option></option>
-                                <?php for($i=0;$i<count($this->datos_cursos);$i++){ ?>
-                                    <?php if( $this->datos_cursos[0]['CURSOS_ID'] == $this->datos_cursos[$i]['CURSOS_ID'] ){ ?>
-                                <option value="<?php echo $this->datos_cursos[$i]['CURSOS_ID'] ?>" selected="selected"><?php echo utf8_encode($this->datos_cursos[$i]['NOMBRE_CURSO']) ?></option>
-                                    <?php } else { ?>
-                                <option value="<?php echo $this->datos_cursos[$i]['CURSOS_ID'] ?>"><?php echo utf8_encode($this->datos_cursos[$i]['NOMBRE_CURSO']) ?></option>
-                                    <?php } ?>
-                                <?php } ?>
-     </select>
-       
-      <select name="codigo_horario" id="codigo_horario">
+       Turno
+       <select name="codigo_horario" id="codigo_horario">
                                 <option></option>
                                 <?php for($i=0;$i<count($this->datos_horario);$i++){ ?>
                                     <?php if( $this->datos_horario[0]['HORARIO_ID'] == $this->datos_horario[$i]['HORARIO_ID'] ){ ?>
@@ -32,40 +20,13 @@
    </p>
    
     <p>
-        <select style="width:250px" id="filtro">
-            <option value="0">Nombre</option>
-            <option value="1">DNI</option>
-        </select>
+ 
         <input type="text" class="input-xlarge" id="buscar">
         <button type="button" class="btn btn-success" id="btn_buscar"><i class="icon-search icon-white"></i></button>  
         <button type="submit" class="btn btn-primary" id="save">Guardar</button>
       </p> 
     <div id="grilla">
-    <table id="table" class="table table-striped table-bordered table-hover sortable">
-        <thead>
-        <tr>
-            <th>Nombre y Apellidos</th>
-            <th>DNI</th>
-            <th>Justificacion</th>
-        </tr>
-        </thead>
-        <tbody>
-<?php for ($i = 0; $i < count($this->datos_alumnomatriculados); $i++) { ?>
-            <tr>
-                <td><?php echo $this->datos_alumnomatriculados[$i]['NOMBRE'].' '.$this->datos_alumnomatriculados[$i]['APELLIDO_PATERNO'].' '.$this->datos_alumnomatriculados[$i]['APELLIDO_MATERNO'] ?></td>
-                <td>
-                    <input type="hidden" id="codigo_matricula" name="codigo_matricula" value="<?php echo $this->datos_alumnomatriculados[$i]['MATRICULA_ID'] ?>">
-                    <?php echo $this->datos_alumnomatriculados[$i]['DNI'] ?>
-                </td>
-                <td>
-                    <input type="radio"  name="justificacion" id="presente" value="1">Presente 
-                    <input type="radio"  name="justificacion" id="ausente" value="2">Ausente
-                </td>
-            </tr>
-        <?php } ?>
-        </tbody>
-    
-    </table>
+  
       
     </div>
 	<div id="controls">

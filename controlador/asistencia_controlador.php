@@ -6,7 +6,7 @@ class asistencia_controlador extends controller{
     private $_alumnomatriculados;
     private $_cursos;
     private $_horario;
-
+    public $datosx; 
     public function __construct() {
         if (!$this->acceso()) {
             $this->redireccionar('error/access/5050');
@@ -19,38 +19,51 @@ class asistencia_controlador extends controller{
     }
 
     public function index() {
-        $this->_vista->datos = $this->_asistencia->selecciona();
+        
         $this->_vista->setJs(array('funcion'));
         $this->_vista->setJs_Foot(array('scriptgrilla'));
         $this->_vista->renderizar('index');
     }
    
     public function buscador(){
-        if($_POST['filtro']==0){
-            $this->_horario->descripcion=$_POST['cadena'];
-            $this->_horario->modulo_padre='';
-        }else{
-            $this->_horario->descripcion='';
-            $this->_horario->modulo_padre=$_POST['cadena'];
-        }
-        
-        echo json_encode($this->_modulos->selecciona());
+
+        $buscar=$_POST['cadena'];
+        $data=$this->_cursos->getQuery("SELECT *
+                from alumno WHERE estado='1' AND (nombre like '%$buscar%' or apellido_paterno like '%$buscar%')");
+       // $data=$dat->fetchall();  
+        echo json_encode($data);
     }
+    
+       public function buscardatos(){
+           
+       $this->_asistencia->turno=$_POST['horario'];
+ 
+        echo json_encode($this->_asistencia->selecciona());
+       
+       }
+    
 
     public function nuevo() {
+        //$this->_asistencia->idcurso=$_POST['codigo_curso'];
+        $datos= $this->_alumnomatriculados->selecciona();
+        $this->_vista->setJs(array('funcion'));
         
         if ($_POST['guardar'] == 1) {
-            $this->_asistencia->idmatricula = $_POST['codigo_matricula'];
-            $this->_asistencia->idcurso = $_POST['codigo_curso'];
-            $this->_asistencia->idhorario = $_POST['codigo_horario'];
-            $this->_asistencia->fecha =date("Y-m-d");
-            $this->_asistencia->justificacion = $_POST['justificacion'];
-            $this->_asistencia->inserta();
-            $this->redireccionar('asistencia');
+          
+             for($i=0;$i<count($_POST['codigo_matricula']);$i++){ 
+               $this->_asistencia->idmatricula=    $_POST['codigo_matricula'][$i];     
+               $this->_asistencia->idhorario =     $_POST['codigo_horario'][$i];
+               $this->_asistencia->fecha =         date("Y-m-d"); 
+               $this->_asistencia->justificacion=  $_POST['justificacion'][$i];
+              
+               $this->_asistencia->inserta();
+               $this->redireccionar('asistencia');
+            }
+                
         }
         
         $this->_vista->datos_alumnomatriculados = $this->_alumnomatriculados->selecciona();
-        $this->_vista->datos_cursos = $this->_cursos->selecciona();
+       // $this->_vista->datos_cursos = $this->_cursos->selecciona();
         $this->_vista->datos_horario = $this->_horario->selecciona(); 
         $this->_vista->titulo = 'Registrar Asistencia';
         $this->_vista->action = BASE_URL . 'asistencia/nuevo';

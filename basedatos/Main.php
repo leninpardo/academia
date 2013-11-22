@@ -2,7 +2,7 @@
 
 class Main extends conexion {
 public $con;
-    protected static function get_consulta($pa, $datos) {
+    public static function get_consulta($pa, $datos) {
         $bd = new conexion();
         $bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
         return self::procedimientoAlmacenado($pa, $datos, $bd);

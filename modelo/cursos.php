@@ -1,6 +1,4 @@
-
 <?php
-
 class cursos extends Main{
 
     public $idcursos;
