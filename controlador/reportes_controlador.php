@@ -19,6 +19,8 @@ class reportes_controlador extends controller {
         $this->_horario = $this->cargar_modelo('horario');
     }
     
+    
+    
     public function index() {
         $this->_vista->datos_cursos=$this->_cursos->selecciona();
         $this->_vista->datos_horario=$this->_horario->selecciona();
