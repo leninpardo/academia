@@ -6,10 +6,10 @@
    <p>
        Turno
        <select name="codigo_horario" id="codigo_horario">
-                                <option></option>
+           <option value="" selected="selected">seleccione..</option>
                                 <?php for($i=0;$i<count($this->datos_horario);$i++){ ?>
                                     <?php if( $this->datos_horario[0]['HORARIO_ID'] == $this->datos_horario[$i]['HORARIO_ID'] ){ ?>
-                                <option value="<?php echo $this->datos_horario[$i]['HORARIO_ID'] ?>" selected="selected"><?php echo utf8_encode($this->datos_horario[$i]['TURNO']) ?></option>
+                                <option value="<?php echo $this->datos_horario[$i]['HORARIO_ID'] ?>" ><?php echo utf8_encode($this->datos_horario[$i]['TURNO']) ?></option>
                                     <?php } else { ?>
                                 <option value="<?php echo $this->datos_horario[$i]['HORARIO_ID'] ?>"><?php echo utf8_encode($this->datos_horario[$i]['TURNO']) ?></option>
                                     <?php } ?>
@@ -22,8 +22,8 @@
     <p>
  
         <input type="text" class="input-xlarge" id="buscar">
-        <button type="button" class="btn btn-success" id="btn_buscar"><i class="icon-search icon-white"></i></button>  
-        <button type="submit" class="btn btn-primary" id="save">Guardar</button>
+        <button type="button" class="btn btn-inverse" id="btn_buscar"><i class="icon-search icon-white"></i></button>  
+        <button type="submit" class="btn btn-inverse" id="save">Guardar</button>
       </p> 
     <div id="grilla">
   
@@ -51,7 +51,7 @@
     <?php } else { ?>
     <div class="page-header">
         <p>No hay alumnos Matriculados</p>
-        <p><a href="<?php echo BASE_URL?>alumno/nuevo" class="btn btn-primary">Nuevo</a></p>
+        <p><a href="<?php echo BASE_URL?>alumno/nuevo" class="btn btn-inverse">Nuevo</a></p>
     </div>
     <?php } ?>
  </form>  

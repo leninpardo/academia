@@ -1,38 +1,34 @@
 <?php if (isset($this->datos) && count($this->datos)) { ?>
 <div class="navbar-inner text-center">
-<p><h3>Lista de Institucion Educativa</h3></p>
+<p><h3>Lista de asientos Contables</h3></p>
     <p>
-     
+        <!--
+        <select class="list" id="filtro">
+            <option value="0">Alumno</option>
+            <option value="1">dni</option>
+        </select>-->
+        
         <input type="text" class="input-xlarge" id="buscar">
         <button type="button" class="btn btn-inverse" id="btn_buscar"><i class="icon-search icon-white"></i></button>
-        <a href="<?php echo BASE_URL?>institucioneducativa/nuevo" class="btn btn-inverse">Nuevo</a>
+        <a  href="<?php echo BASE_URL?>vista/contabilidad/generate.php" target="_blanck" class="btn btn-inverse" >Generar libro diario</a>
     </p>
     <div id="grilla">
     <table id="table" class="table table-striped table-bordered table-hover sortable">
         <thead>
         <tr>
-            <th>Item</th>
-            <th>nombre</th>
-            <th>curriculo</th>
-            <th>telefono_fijo</th>
-            <th>direccion</th>
-            <th>Acciones</th>
+            <th>Nro Asiento</th>
+         <th>Descripcion</th>
+           
         </tr>
         </thead>
         <tbody>
-        <?php for ($i = 0; $i < count($this->datos); $i++) { ?>
+        <?php foreach  ($this->datos as $k) { ?>
             <tr>
-                <td><?php echo $i+1 ?></td>
-                <td><?php echo $this->datos[$i]['NOMBRE'] ?></td>
-               <td><?php echo $this->datos[$i]['CURRICULA'] ?></td>
-                <td><?php echo $this->datos[$i]['TELEFONO_FIJO'] ?></td>
-                <td><?php echo $this->datos[$i]['DIRECCION'] ?></td>
-                <td>
-                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>institucioneducativa/editar/<?php echo $this->datos[$i]['INSTITUCIONEDUCATIVA_ID'] ?>')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>
-                    <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>institucioneducativa/eliminar/<?php echo $this->datos[$i]['INSTITUCIONEDUCATIVA_ID'] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
-                </td>
+                <td><?php echo $k[0] ?></td>
+                <td><?php echo $k[1] ?></td>
+                       
             </tr>
-        <?php } ?>
+        <?php  } ?>
         </tbody>
     </table>
     </div>
@@ -55,9 +51,11 @@
 		</div>
 		<div id="text">Página <span id="currentpage"></span> de <span id="pagelimit"></span></div>
 	</div>
-
     <?php } else { ?>
 <div class="navbar-inner">
-        <p>No hay Horario</p>
-        <a href="<?php echo BASE_URL?>institucioneducativa/nuevo" class="btn btn-inverse">Nuevo</a>
+        <p>No hay cajas</p>
+        <a  class="btn btn-primary">No hay Asientos contables </a>
     <?php } ?>
+
+        <!-- Modal -->
+    

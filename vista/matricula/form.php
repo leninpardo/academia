@@ -30,7 +30,7 @@
                     </td>
                     <td>
                       
-                     <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoAlumno" type="button" class="btn btn-primary" title="Insertar Alumno"><i class="icon-plus icon-white"></i></button>
+                     <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoAlumno" type="button" class="btn btn-inverse" title="Insertar Alumno"><i class="icon-plus icon-white"></i></button>
                     </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
                       </select>
             </td>
               <td>
-          <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoApoderado" type="button" class="btn btn-primary" title="Insertar Apoderado"><i class="icon-plus icon-white"></i></button>
+          <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoApoderado" type="button" class="btn btn-inverse" title="Insertar Apoderado"><i class="icon-plus icon-white"></i></button>
               </td>
         </tr>
         
@@ -165,7 +165,7 @@
             <td><input type="text" name="monto_p" id="monto_p" ></td>
             <td>
              
-                <button  name="add_cronograma" id="add_cronograma" type="button" class="btn btn-success active" value="1"><i class="icon-ok icon-white"></i></button>
+                <button  name="add_cronograma" id="add_cronograma" type="button" class="btn btn-inverse active" value="1"><i class="icon-ok icon-white"></i></button>
             </td>
             
         </tr>
@@ -382,8 +382,8 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="reg_alumno">Guardar</button>
-            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <button type="button" class="btn btn-inverse" id="reg_alumno">Guardar</button>
+            <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
     </div>
         
@@ -457,8 +457,8 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="reg_apoderado">Guardar</button>
-            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <button type="button" class="btn btn-inverse" id="reg_apoderado">Guardar</button>
+            <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
     </div>
         

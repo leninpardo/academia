@@ -37,8 +37,8 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <p><button type="submit" id="save" class="btn btn-primary">Guardar</button>
-                <a href="<?php echo BASE_URL ?>" class="btn btn-info">Cancelar</a></p>
+                <p><button type="submit" id="save" class="btn btn-inverse">Guardar</button>
+                <a href="<?php echo BASE_URL ?>" class="btn btn-inverse">Cancelar</a></p>
             </td>
         </tr>
     </table>

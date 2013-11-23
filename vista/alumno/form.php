@@ -150,8 +150,8 @@
             <tr>
                 <td align="center">
                     <p>
-                        <button type="button" class="btn btn-success" id="saveformnatural">Guardar</button>
-                        <a href="<?php echo BASE_URL ?>alumno" class="btn btn-success cancel">Cancelar</a>
+                        <button type="button" class="btn btn-inverse" id="saveformnatural">Guardar</button>
+                        <a href="<?php echo BASE_URL ?>alumno" class="btn btn-inverse cancel">Cancelar</a>
                     </p>
                 </td>
             </tr>

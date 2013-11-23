@@ -4,8 +4,8 @@
     <p>
     
         <input type="text" class="input-xlarge" id="buscar">
-        <button type="button" class="btn btn-primary" id="btn_buscar"><i class="icon-search icon-white"></i></button>
-        <a href="<?php echo BASE_URL?>empleado/nuevo" class="btn btn-primary">Nuevo</a>
+        <button type="button" class="btn btn-inverse" id="btn_buscar"><i class="icon-search icon-white"></i></button>
+        <a href="<?php echo BASE_URL?>empleado/nuevo" class="btn btn-inverse">Nuevo</a>
     </p>
     <div id="grilla">
     <table id="table" class="table table-striped table-bordered table-hover sortable">
@@ -28,8 +28,8 @@
                 <td><?php echo $this->datos[$i]['USUARIO'] ?></td>
                 <td><?php echo $this->datos[$i]['PPERFIL'] ?></td>
                 <td>
-                    <a href="#myModal" role="button" data-toggle="modal" onclick="ver('<?php echo $this->datos[$i]['ID_EMPLEADO'] ?>')" class="btn btn-warning"><i class="icon-eye-open icon-white"></i> Ver</a>
-                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>empleado/editar/<?php echo $this->datos[$i]['ID_EMPLEADO'] ?>')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>
+                    <a href="#myModal" role="button" data-toggle="modal" onclick="ver('<?php echo $this->datos[$i]['ID_EMPLEADO'] ?>')" class="btn btn-success"><i class="icon-eye-open icon-white"></i> Ver</a>
+                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>empleado/editar/<?php echo $this->datos[$i]['ID_EMPLEADO'] ?>')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>
                     <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>empleado/eliminar/<?php echo $this->datos[$i]['ID_EMPLEADO'] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
                 </td>
             </tr>
@@ -75,6 +75,6 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+            <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Ok</button>
         </div>
     </div>

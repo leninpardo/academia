@@ -11,6 +11,7 @@
  */
 class matricula extends Main{
     //put your code here
+    public $idmatricula;
      public function selecciona() {
         if (is_null($this->matricula)) {
             $this->matricula = 0;
@@ -48,6 +49,35 @@ class matricula extends Main{
         }
     }
 
+    
+     public function re_tiket() {
+        if (is_null($this->idmatricula)) {
+            $this->idmatricula = 0;
+        }
+ 
+        $datos = array($this->idmatricula);
+//        echo '<pre>';print_r($datos);exit;
+        $r = $this->get_consulta("tiket_matricula", $datos);
+
+        if ($r[1] == '') {
+            $stmt = $r[0];
+
+        } else {
+            die($r[1]);
+
+        }
+        $r = null;
+        if (conexion::$_servidor == 'oci') {
+            oci_fetch_all($stmt, $data, null, null, OCI_FETCHSTATEMENT_BY_ROW);
+            return $data;
+        } else {
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            return $stmt->fetchall();
+        }
+    }
+
+    
+    
      /*public function inserta() {
         $datos = array($this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->dni, $this->fechanacimiento,
             $this->estadocivil, $this->usuario, $this->clave, $this->id_perfil);

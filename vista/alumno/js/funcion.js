@@ -39,8 +39,8 @@
                     HTML = HTML + '<td>'+datos[i][9]+'</td>';
                     HTML = HTML + '<td>'+datos[i][10]+'</td>';
                     var editar=url+'alumno/editar/'+datos[i][0]; 
-                    HTML += '<td><a style="margin-right:4px" href="#myModal" role="button" data-toggle="modal" onclick="ver(\''+datos[i].IDCLIENTE+'\')" class="btn btn-warning"><i class="icon-eye-open icon-white"></i> Ver</a>';
-                    HTML += '<a href="javascript:void(0)" onclick="editar(\''+editar+'\')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>';
+                    HTML += '<td><a style="margin-right:4px" href="#myModal" role="button" data-toggle="modal" onclick="ver(\''+datos[i].IDCLIENTE+'\')" class="btn btn-success"><i class="icon-eye-open icon-white"></i> Ver</a>';
+                    HTML += '<a href="javascript:void(0)" onclick="editar(\''+editar+'\')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>';
                     HTML = HTML + '</td>';
                     HTML = HTML + '</tr>';
                 }

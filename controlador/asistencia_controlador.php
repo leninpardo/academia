@@ -45,22 +45,34 @@ class asistencia_controlador extends controller{
 
     public function nuevo() {
         //$this->_asistencia->idcurso=$_POST['codigo_curso'];
-        $datos= $this->_alumnomatriculados->selecciona();
+        //$datos= $this->_alumnomatriculados->selecciona();
         $this->_vista->setJs(array('funcion'));
+        $horario=$_POST['codigo_horario'];
         
+        //$datosasistencis= $this->_asistencia->selecciona();
+    
         if ($_POST['guardar'] == 1) {
-          
-             for($i=0;$i<count($_POST['codigo_matricula']);$i++){ 
+            $this->_asistencia->elimina();
+           // die(var_dump($_POST['codigo_matricula']));
+            for($i=0;$i<count($_POST['codigo_matricula']);$i++){ 
                $this->_asistencia->idmatricula=    $_POST['codigo_matricula'][$i];     
-               $this->_asistencia->idhorario =     $_POST['codigo_horario'][$i];
+               $this->_asistencia->idhorario = $horario;    
                $this->_asistencia->fecha =         date("Y-m-d"); 
-               $this->_asistencia->justificacion=  $_POST['justificacion'][$i];
-              
+               
+               
+              if(isset ($_POST['justificacion'][$i])){
+                $this->_asistencia->justificacion=  $_POST['justificacion'][$i];
+              }else{
+                $this->_asistencia->justificacion=  null;
+              }
+            
                $this->_asistencia->inserta();
-               $this->redireccionar('asistencia');
+               
             }
+            $this->redireccionar('asistencia');
                 
-        }
+         }
+       
         
         $this->_vista->datos_alumnomatriculados = $this->_alumnomatriculados->selecciona();
        // $this->_vista->datos_cursos = $this->_cursos->selecciona();

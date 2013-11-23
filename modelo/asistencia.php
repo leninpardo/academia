@@ -51,6 +51,14 @@ class asistencia extends Main {
             return $stmt->fetchall();
         }
     }
+    
+     public function elimina() {
+        $datos ='';
+        $r = $this->get_consulta("elim_asistencia", $datos);
+        $error = $r[1];
+        $r = null;
+        return $error;
+    }
 
 
 }

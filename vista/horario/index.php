@@ -26,7 +26,7 @@
                 <td><?php echo $this->datos[$i]['HORA_INICIO'] ?></td>
                 <td><?php echo $this->datos[$i]['HORA_FIN'] ?></td>
                 <td>
-                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>horario/editar/<?php echo $this->datos[$i]['HORARIO_ID'] ?>')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>
+                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>horario/editar/<?php echo $this->datos[$i]['HORARIO_ID'] ?>')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>
                     <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>horario/eliminar/<?php echo $this->datos[$i]['HORARIO_ID'] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
                 </td>
             </tr>

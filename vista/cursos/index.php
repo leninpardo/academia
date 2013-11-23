@@ -21,7 +21,7 @@
                 <td><?php echo $i+1 ?></td>
                 <td><?php echo $this->datos[$i]['NOMBRE_CURSO'] ?></td>
                 <td>
-                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>cursos/editar/<?php echo $this->datos[$i]['CURSOS_ID'] ?>')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>
+                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>cursos/editar/<?php echo $this->datos[$i]['CURSOS_ID'] ?>')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>
                     <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>cursos/eliminar/<?php echo $this->datos[$i]['CURSOS_ID'] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
                 </td>
             </tr>
@@ -52,5 +52,5 @@
     <?php } else { ?>
 <div class="navbar-inner">
         <p>No hay Cursos</p>
-        <a href="<?php echo BASE_URL?>cursos/nuevo" class="btn btn-primary">Nuevo</a>
+        <a href="<?php echo BASE_URL?>cursos/nuevo" class="btn btn-inverse">Nuevo</a>
     <?php } ?>

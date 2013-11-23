@@ -81,8 +81,8 @@
         </tr>
         <tr>
             <td colspan="4" align="center">
-                <p><button type="submit" class="btn btn-primary" id="save">Guardar</button>
-                <a href="<?php echo BASE_URL ?>empleado" class="btn btn-info">Cancelar</a></p>
+                <p><button type="submit" class="btn btn-inverse" id="save">Guardar</button>
+                <a href="<?php echo BASE_URL ?>empleado" class="btn btn-inverse">Cancelar</a></p>
             </td>
         </tr>
     </table>

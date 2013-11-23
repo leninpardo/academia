@@ -34,7 +34,7 @@
                 <td><?php echo $this->datos[$i]['FECHA_NACIMIENTO'] ?></td>
                 <td><?php echo $this->datos[$i]['DNI'] ?></td>
                 <td>
-                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>apoderado/editar/<?php echo $this->datos[$i]['APODERADO_ID'] ?>')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>
+                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>apoderado/editar/<?php echo $this->datos[$i]['APODERADO_ID'] ?>')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>
                     <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>apoderado/eliminar/<?php echo $this->datos[$i]['APODERADO_ID'] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
                 </td>
             </tr>

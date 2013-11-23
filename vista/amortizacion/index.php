@@ -34,7 +34,7 @@
                 
                 <td>
                     <a href="javascript:void(0)" onclick="amortizar('<?php echo BASE_URL?>amortizacion/amortizar/<?php echo $k[0] ?>')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Amortizar</a>
-                   <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>amortizacion/editar/<?php echo $k[0] ?>')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>
+                   <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>amortizacion/editar/<?php echo $k[0] ?>')" class="btn btn-warning"><i class="icon-pencil icon-white"></i> Editar</a>
                     <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>amortizacion/eliminar/<?php echo $k[0] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
           
                 </td>
@@ -82,6 +82,6 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+            <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Ok</button>
         </div>
     </div>

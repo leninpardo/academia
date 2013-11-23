@@ -33,8 +33,8 @@
 
                 <tr>
                     <td colspan="2" class="text-center">
-                    <p><button type="button" class="btn btn-primary" id="save">Guardar</button>
-                    <a href="<?php echo BASE_URL ?>institucioneducativa" class="btn btn-info">Cancelar</a></p>
+                    <p><button type="button" class="btn btn-inverse" id="save">Guardar</button>
+                    <a href="<?php echo BASE_URL ?>institucioneducativa" class="btn btn-inverse">Cancelar</a></p>
                     </td>
                 </tr>
             </table>

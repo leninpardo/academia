@@ -16,10 +16,16 @@ $(function() {
                             '<tbody>';  
                 for(var i=0;i<datos.length;i++){
                     HTML = HTML + '<tr>';
-                    HTML = HTML + '<td><input type="text" name="codigo_matricula[]" value="codigo_matricula'+datos[i].MATRICULA_ID+'">'+datos[i].MATRICULA_ID+'</td>';
+                    HTML = HTML + '<td><input type="hidden" name="codigo_matricula[]" value="'+datos[i].MATRICULA_ID+'">'+datos[i].MATRICULA_ID+'</td>';
                     HTML = HTML + '<td>'+datos[i].NOMBRE+'</td>';     
                     var id=datos[i].MATRICULA_ID;
-                    HTML = HTML + '<td><input type="checkbox"  name="justificacion" id='+id+' value="1">';
+                    HTML = HTML + '<td><input type="checkbox"  name="justificacion[]" id='+id+' value="1">';
+                    if ($('.justificacion').attr('checked')) {
+                      $(".justificacion").attr('value','0');
+                    }
+                   else {
+                      $(".justificacion").attr('value','1');
+                   }
                     HTML = HTML + '</td>';
                     HTML = HTML + '</tr>';
                 }
