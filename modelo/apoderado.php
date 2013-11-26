@@ -43,8 +43,8 @@ class apoderado extends Main{
     
     
      public function inserta() {
-        $datos = array(0,$this->nombre,  $this->apellido_paterno,$this->apellido_materno, $this->direccion,  $this->ocupacion
-                       ,$this->fecha_nacimiento,  $this->dni);
+        $datos = array(0, $this->nombre, $this->apellido_paterno, $this->apellido_materno, $this->direccion, $this->ocupacion
+                       ,$this->fecha_nacimiento, $this->dni);
         $r = $this->get_consulta("ins_act_apoderado", $datos);
         $error = $r[1];
         $r = null;

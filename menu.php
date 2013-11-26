@@ -30,6 +30,8 @@ Class menu {
         echo "</ul>  
       <ul class='nav pull-right'><li><a href='".BASE_URL."login/cerrar'>Cerrar Sesión</a></li></ul>";
         echo "</div></section>";
+           
+    
     }
 
     function cargarmenu() {

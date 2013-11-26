@@ -22,6 +22,7 @@
 
 }
 body{
+    
     background-color: #ccffff;
     background-image: -moz-linear-gradient(top, #00aaff, #ccffff);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00aaff), to(#ccffff));
@@ -60,7 +61,6 @@ caption{
     padding-bottom: 1em;
 }
 #body {
-  
     border-radius: 15px 15px 0 0;
 }
 #bodysistema {
@@ -307,10 +307,11 @@ caption{
 #mc-canvas.mc-valid {
 	border: 4px solid #44aa44;
 }
-.menu-inner{
+.menu-inner{  
   min-height: 40px;
   padding-right: 20px;
-  padding-left: 20px;
+  padding-left: 30px;
+  width: 95.6%;
   background-color:#72B71D;
   background-image: -moz-linear-gradient(top, #faa732,#72B71D);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#72B71D), to(#72B71D));
@@ -391,7 +392,7 @@ caption{
     -ms-transform: scale(1.2) rotate(5deg);
     z-index: 1000;
     
-    background-image: url(../img/logo.png);
+    background-image: url(../img/logob.gif);
     background-repeat: no-repeat;
     font-weight: bold;
     text-shadow: 5px 5px 5px black, -5px -5px  5px black,
@@ -415,7 +416,7 @@ caption{
     background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
     color: #666666;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);*/
-    background-image: url(../img/logo.png);
+    background-image: url(../img/logob.gif);
     background-repeat: no-repeat;
     font-weight: bold;
     

@@ -11,6 +11,7 @@
         margin: 0 3%;
 	border:none;
 	text-align:left; /* reset align=center */
+        background: red;
 }
 * html #wowslider-container1{ width:960px }
 #wowslider-container1 .ws_images ul{
@@ -301,5 +302,6 @@
 @media (max-width: 1024px){
     #wowslider-container1  .ws_thumbs{
         display: none;
+        background: red;
     }
 }

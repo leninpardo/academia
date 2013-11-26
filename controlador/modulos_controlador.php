@@ -22,8 +22,8 @@ class modulos_controlador extends controller{
    public function buscador(){
 
         $buscar=$_POST['cadena'];
-        $data=$this->_modulos->getQuery("SELECT *
-                from modulos WHERE estado='1' AND (descripcion like '%$buscar%' or idmodulo like '%$buscar%')");
+       // $numeros=$_POST{
+        $data=$this->_modulos->getQuery("SELECT *  from modulos WHERE estado=1 AND (descripcion like '%$buscar%')");
        // $data=$dat->fetchall();  
         echo json_encode($data);
     }

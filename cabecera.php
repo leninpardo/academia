@@ -73,11 +73,26 @@
             <div class="div_fanbox" style='background: #3c5a98;'>
                 <span class="fanbox_fb">
                     <div class='likeboxwrap'>
-                       
+                      <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FAULA-Abierta%2F432086783559876%3Ffref%3Dts&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:290px;" allowTransparency="true"> 
+                      </iframe> 
                     </div>
                 </span>
             </div>
         </div>
+         <div id='twitter_box' class="slide_likebox2">
+            <img src='<?php echo BASE_URL?>lib/img/tw_tab.png'  class="img_fanbox"/>
+            <div class="div_fanbox" style='background: #00a0e8;'>
+                <span>
+                    <div class='likeboxwrap'>
+                        <div id="twitterfanbox">
+      <a class="twitter-timeline" href="https://twitter.com/AulaAbierta2" data-widget-id="405076976525795328">Tweets by @AulaAbierta2</a> 
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                        </div>      
+                    </div>
+                </span>
+            </div>
+        </div>
+    
         <?php } ?>
         <?php if(isset($_params['js']) && count($_params['js'])): ?>
         <?php for($i=0; $i < count($_params['js']); $i++): ?>
@@ -94,9 +109,18 @@
         
         <?php endfor; ?>
         <?php endif; ?>
-        <script type="text/javascript">
-            jQuery(function (){jQuery(".slide_likebox").hover(function(){jQuery(".slide_likebox").stop(true, false).animate({right:"0"},"medium");},
+    
+           <script>
+            jQuery(function (){jQuery(".slide_likebox").hover(function(){jQuery(".slide_likebox").stop(true, false).animate({right:"0"},"medium")},
                 function(){jQuery(".slide_likebox").stop(true, false).animate({right:"-250"},"medium");},500);return false;});
+            jQuery(function (){
+                jQuery(".slide_likebox2").hover(function(){
+                    jQuery(".slide_likebox2").stop(true, false).animate({right:"0"},"medium").css('z-index','1005');
+                },
+                function(){
+                    jQuery(".slide_likebox2").stop(true, false).animate({right:"-250"},"medium").css('z-index','1000');
+                },500);return false;
+            });
         </script>
     </head>
     <body>
@@ -159,13 +183,13 @@
                      
                         <div class="nav-collapse collapse nav-collapse1" style="width: 200%;" >
                             <ul class="nav" id="menu_info" style="width:100%; margin: 0%; margin-left: -4%; background-color:#446D9E">
-                                <li style="padding-right: 3%; margin-top: 1%; margin-left: 1%"> <a href="<?php echo BASE_URL?>index"><img  class="img-rounded" src="<?php echo BASE_URL ?>lib/img/logo.png" height="100%" width="100%" /></a></li>
-                                     <li style="margin-top: 3%; margin-left: 1%"><a class="li_inicio"  href="<?php echo BASE_URL ?>"><span></span>INICIO</a></li>
-                                    <li style="margin-top: 3%;margin-left: 1%"><a class="li_nosotros" href="<?php echo BASE_URL ?>web/nosotros"><span></span>NOSOTROS</a></li>
-                                    <li style="margin-top: 3%;margin-left: 1%"><a class="li_servicios" href="<?php echo BASE_URL ?>web/servicios"><span></span>SERVICIOS</a></li>
-                                    <li style="margin-top: 3%;margin-left: 1%"><a class="li_contactenos" href="<?php echo BASE_URL ?>web/contactenos"><span></span>CONTÁCTENOS</a></li>
+                                <li style="padding-right: 3%; margin-top: 0%; margin-left: 1%"> <a href="<?php echo BASE_URL?>index"><img  class="img-rounded" src="<?php echo BASE_URL ?>lib/img/logo.png" height="50%" width="50%" /></a></li>
+                                     <li style="margin-top: 1%; margin-left: 1%"><a class="li_inicio"  href="<?php echo BASE_URL ?>"><span></span>INICIO</a></li>
+                                    <li style="margin-top: 1%;margin-left: 1%"><a class="li_nosotros" href="<?php echo BASE_URL ?>web/nosotros"><span></span>NOSOTROS</a></li>
+                                    <li style="margin-top: 1%;margin-left: 1%"><a class="li_servicios" href="<?php echo BASE_URL ?>web/servicios"><span></span>SERVICIOS</a></li>
+                                    <li style="margin-top: 1%;margin-left: 1%"><a class="li_contactenos" href="<?php echo BASE_URL ?>web/contactenos"><span></span>CONTÁCTENOS</a></li>
                                 <?php if(session::get('autenticado')){ ?>
-                                <li style="margin-top: 3%;margin-left: 1%"><a class="li_sistema" href="<?php echo BASE_URL ?>index"><span></span>SISTEMA</a></li>
+                                <li style="margin-top: 1%;margin-left: 1%"><a class="li_sistema" href="<?php echo BASE_URL ?>index"><span></span>SISTEMA</a></li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -185,8 +209,8 @@
                                 </button>
                             </div>
                             <div class="nav-collapse nav-collapse2 collapse" >
-                                <ul class="nav" id="menu_info" style=" width: 70%" >
-                                    <li style="margin-top: -3%; padding: 3%"> <a href="<?php echo BASE_URL?>index"><img src="<?php echo BASE_URL ?>lib/img/logo.png" height="70%" width="70%"/></a></li>
+                                <ul class="nav" id="menu_info" style=" width: 70%;margin-top: -3%" >
+                                    <li style="margin-top: -2%; padding: 3%"> <a href="<?php echo BASE_URL?>index"><img src="<?php echo BASE_URL ?>lib/img/logo.png" height="50%" width="50%"/></a></li>
                                     <li style="margin-top: 1%; margin-left: 1%"><a class="li_inicio"  href="<?php echo BASE_URL ?>"><span></span>INICIO</a></li>
                                     <li style="margin-top: 1%;margin-left: 1%"><a class="li_nosotros" href="<?php echo BASE_URL ?>web/nosotros"><span></span>NOSOTROS</a></li>
                                     <li style="margin-top: 1%;margin-left: 1%"><a class="li_servicios" href="<?php echo BASE_URL ?>web/servicios"><span></span>SERVICIOS</a></li>

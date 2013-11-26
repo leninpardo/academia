@@ -64,6 +64,6 @@
 
     <?php } else { ?>
 <div class="navbar-inner">
-        <p>No hay Horario</p>
-        <a href="<?php echo BASE_URL?>horario/nuevo" class="btn btn-primary">Nuevo</a>
+        <p>No hay apoderado</p>
+        <a href="<?php echo BASE_URL?>apoderado/nuevo" class="btn btn-primary">Nuevo</a>
     <?php } ?>

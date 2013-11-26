@@ -17,7 +17,7 @@
                    </select>
             </td>
             <td width="15%" align="center">
-                <input type="submit" value="Generar"  class="btn btn-warning"/>
+                <input type="submit" value="Generar"  class="btn btn-inverse"/>
             </td>
         </tr>
     </table>
@@ -40,7 +40,7 @@
                    </select> 
             </td>
             <td width="15%" align="center">
-                <input type="submit" value="Generar" class="btn btn-warning"/>
+                <input type="submit" value="Generar" class="btn btn-inverse"/>
             </td>
         </tr>
     </table>

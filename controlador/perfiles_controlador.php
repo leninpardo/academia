@@ -23,7 +23,7 @@ class perfiles_controlador extends controller {
 
         $buscar=$_POST['cadena'];
         $data=$this->_perfiles->getQuery("SELECT *
-                from perfil WHERE estado='1' AND (descripcion like '%$buscar%' or id_perfil like '%$buscar%')");
+                from perfil WHERE estado=1 AND (descripcion like '%$buscar%')");
        // $data=$dat->fetchall();  
         echo json_encode($data);
     }

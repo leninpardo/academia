@@ -6,25 +6,25 @@
             <div class="ws_images">
                 <ul>
                     <li>
-                        <img src="<?php  echo BASE_URL ?>lib/img/05.jpg" alt="Nuestra Sede en Tarapoto" title="Nuestra Sede en Tarapoto" id="wows1_0"/>Nuestra Sede en Tarapoto
+                        <img src="<?php  echo BASE_URL ?>lib/img/05.jpg" alt="Nuestra Sede en Tarapoto" title="Nuestra Sede en Tarapoto" id="wows1_0"/>
                     </li>
                 </ul>
             </div>
             <div class="ws_thumbs">
                 <div>
-                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg" title="Nuestra Sede en Tarapoto">
+                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg">
                         <img src="<?php  echo BASE_URL ?>lib/img/tooltips/05.jpg" alt="" />
                     </a>
-                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg" title="LLegue a su destino">
+                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg">
                         <img src="<?php  echo BASE_URL ?>lib/img/tooltips/05.jpg" alt="" />
                     </a>
-                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg" title="Tarapoto - Lima">
+                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg">
                         <img src="<?php  echo BASE_URL ?>lib/img/tooltips/05.jpg" alt="" />
                     </a>
-                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg" title="Promoción por Dia del Padre">
+                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg">
                         <img src="<?php  echo BASE_URL ?>lib/img/tooltips/05.jpg" alt="" />
                     </a>
-                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg" title="Tarapoto">
+                    <a href="<?php  echo BASE_URL ?>lib/img/05.jpg">
                         <img src="<?php  echo BASE_URL ?>lib/img/tooltips/05.jpg" alt="" />
                     </a>
                 </div>

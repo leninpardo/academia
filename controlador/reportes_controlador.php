@@ -129,7 +129,13 @@ class reportes_controlador extends controller {
             for ($i = 0; $i <  count($alumnos); $i++) {
             $c_codigo[$contapag] = $c_codigo[$contapag] . $alumnos[$i]['ALUMNO_ID'] . "\n";
             $c_nombre[$contapag] = $c_nombre[$contapag] . $alumnos[$i]['NOMBRE'] . "\n";
-            $c_asistencia[$contapag] = $c_asistencia[$contapag] . $alumnos[$i]['JUSTIFICACION'] . "\n";
+            if($alumnos[$i]['JUSTIFICACION']==1){
+            $c_asistencia[$contapag] = $c_asistencia[$contapag] .'Presente'."\n";   
+            }
+            else{
+            $c_asistencia[$contapag] = $c_asistencia[$contapag] .'Ausente'. "\n";    
+            }
+            
             
             $contaobj = $contaobj + 1;
             if ($contaobj == $opp) {
@@ -160,14 +166,23 @@ class reportes_controlador extends controller {
             $this->_fpdf->Cell(25, 6, utf8_decode('Código'), 'BT', 0, 'L', 1);
             $this->_fpdf->SetX(40);
             $this->_fpdf->Cell(105, 6, utf8_decode('Nombres'), 'BT', 0, 'L', 1);
+            $this->_fpdf->SetX(145); //posicion x
+            $this->_fpdf->Cell(45, 6, utf8_decode('Justificacion'), 'BT', 0, 'L', 1);
             //DATOS DE TABLA
             $this->_fpdf->SetFont('Courier', '', 12);
             $this->_fpdf->SetY($Y_table_position);
             $this->_fpdf->SetX(15);
+            
             $this->_fpdf->MultiCell(25, 5, $c_codigo[$i], 1);
             $this->_fpdf->SetY($Y_table_position);
             $this->_fpdf->SetX(40);
+            
             $this->_fpdf->MultiCell(105, 5, $c_nombre[$i], 1);
+            $this->_fpdf->SetY($Y_table_position);
+            $this->_fpdf->SetX(145);// posicion x
+            
+            $this->_fpdf->MultiCell(45, 5, $c_asistencia[$i], 1);
+            $this->_fpdf->SetY($Y_table_position);
         }
         $this->_fpdf->Output(); 
         
