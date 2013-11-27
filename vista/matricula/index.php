@@ -33,7 +33,7 @@
                 <td><?php echo $k[4] ?></td>
                 
                 <td>
-                    <a target="_blank" href="<?php echo BASE_URL ?>reportes/ticket_pago/<?php echo $k[0] ?>" class="btn btn-info"><i class="icon-print"></i> Imprimir</a>
+                    <a href="#myModal" role="button" data-toggle="modal" onclick="ver('<?php echo $k[0]; ?>')" class="btn btn-warning"><i class="icon-eye-open icon-white"></i> Ver</a>
                     <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>matricula/eliminar/<?php echo $k[0] ?>')" class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>
                 </td>
             </tr>
@@ -63,7 +63,7 @@
     <?php } else { ?>
 <div class="navbar-inner">
         <p>No hay Alumnos Matriculados</p>
-        <a href="<?php echo BASE_URL?>matricula/nuevo" class="btn btn-inverse">Nuevo</a>
+        <a href="<?php echo BASE_URL?>matricula/nuevo" class="btn btn-primary">Nuevo</a>
     <?php } ?>
 
         <!-- Modal -->

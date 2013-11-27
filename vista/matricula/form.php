@@ -9,52 +9,23 @@
             <td>
         <label>Estudiante</label>
             </td>
-                  <td>
-                    
-                      <select id="estudiante" name="estudiante">
-                          <option value="">::Seleccione::</option>
-                          <?php
-                        foreach ($this->data_alumnos as $k)
-                              {
-                            $select="";
-
-                               if($this->data[0][0]==$k[0])
-                                       {
-                                        $select="selected";
-                                        }
-                           echo "<option value='".$k[0]."' $select>".$k[1]."</option>";
-                                       
-                              }
-                          ?>
-                      </select>
+                  
+                    <td><input type="text" name="name_alumno" id="name_alumno"/>
+                        <input type="hidden" name="estudiante" id="estudiante"/>
+                         <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#buscarAlumno" type="button" class="btn btn-primary" title="BUSCAR ALUMNO"><i class=" icon-search"></i></button>
+                         <span><button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoAlumno" type="button" class="btn btn-primary" title="Insertar Alumno"><i class="icon-plus icon-white"></i></button>
+                    </span>
                     </td>
-                    <td>
-                      
-                     <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoAlumno" type="button" class="btn btn-inverse" title="Insertar Alumno"><i class="icon-plus icon-white"></i></button>
-                    </td>
+                  
         </tr>
         <tr>
-            <td>Apoderado            </td>
-            <td>
-                <select id="apoderado" name="apoderado">
-                          <option value="">::Seleccione::</option>
-                          <?php 
-                            foreach ($this->data_apoderados as $k)
-                              {
-                           $select="";
-
-                               if($this->data[0][6]==$k[0])
-                                       {
-                                        $select="selected";
-                                        }
-                           echo "<option value='".$k[0]."' $select>".$k[1]."</option>";
-                              }
-                          ?>
-                      </select>
+            <td>Apoderado:</td>
+            <td><input type="text" name="name_apoderado" id="name_apoderado"/>
+                        <input type="hidden" name="apoderado" id="apoderado"/>
+                         <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#buscarApoderado" type="button" class="btn btn-primary" title="BUSCAR ALUMNO"><i class=" icon-search"></i></button>
+                         <span>          <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoApoderado" type="button" class="btn btn-primary" title="Insertar Apoderado"><i class="icon-plus icon-white"></i></button></span>
             </td>
-              <td>
-          <button style="margin: -10px 10px 0 0" data-toggle="modal" data-target="#modalNuevoApoderado" type="button" class="btn btn-inverse" title="Insertar Apoderado"><i class="icon-plus icon-white"></i></button>
-              </td>
+            
         </tr>
         
         <tr>
@@ -70,7 +41,7 @@
                            echo "<option value='".$k[0]."'>".$k[1]."</option>";
                               }
                           ?>
-                      </select>
+                </select>
             </td>
             
         </tr>
@@ -99,7 +70,7 @@
                                 
                                   echo "<td> <input type='hidden' name='cursos_id[]' value='".$sc[0]."'/>".$sc[0]."</td>";
                                   echo "<td>$sc[1]</td>";
-                                  echo "<td>eliminar</td>";
+                                  echo "<td><a class='btn btn-danger delete'><i class='icon-trash icon-white'></i></a></td>";
                                   echo "</tr>";
                                 }
                         ?>
@@ -112,7 +83,7 @@
         <tr>
                         <td></td>
 
-            <td>lista de horarios disponibles</td>
+                        <td><P style=" color:  black; font-size:  medium;">LISTA DE HORARIOS DISPONIBLES</P></td>
         </tr>
         
         <tr>
@@ -123,19 +94,35 @@
             <tr><th>Item</th><th>Turno</th><th>Dia</th><th>Hora Inicio</th><th>hora finalizar</th><th>Accion</th></tr>
             </thead>
             <?php
-            $item=0;
-            foreach ($this->data_horarios as $th)
+             $item=0;
+              foreach ($this->data_horarios as $dh)
                     {
                 $item++;
-                echo "<tr>";
+                echo "<tr class='success'>";
+                    echo "<td>$item</td>";
+                    echo "<td>$dh[1]</td>";
+                    echo "<td>$dh[2]</td>";
+                    echo "<td>$dh[3]</td>";
+                    echo "<td>$dh[4]</td>";
+                    echo "<td><input type='checkbox' checked='checked'  class='cliking' name='horario_id[]' id='horario_id[]' value='".$dh[0]."' /></td>";
+                    echo "</tr>";
+                    }
+          
+           
+           /*foreach ($this->data_det_horario as $th)
+           {
+                $item++;
+                    echo "<tr class='active'>";
                     echo "<td>$item</td>";
                     echo "<td>$th[1]</td>";
                     echo "<td>$th[2]</td>";
                     echo "<td>$th[3]</td>";
                     echo "<td>$th[4]</td>";
-                    echo "<td><input type='checkbox' class='cliking' name='horario_id[]' id='horario_id[]' value='".$th[0]."' /></td>";
-                    echo "</tr>";
-                    }
+                    echo "<td><input  type='checkbox' class='cliking' name='horario_id[]' id='horario_id[]' value='".$th[0]."' /></td>";
+                    echo "</tr>";  
+           }*/
+            
+           
             ?>
         
         </table>
@@ -155,24 +142,30 @@
         
         <tr>
 
-            <td>Fecha de pago:</td>
+            <td><div class="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>>Fecha de pago:</div></td>
             <td><!--<input type="text" data-format="yyyy-MM-dd" name="fecha_p" id="fecha_p" value=""/>-->
-                <div class="well">
-                    <input class="span2"  id="fecha_p" type="text" name="fecha_p">
-</div>
+                
+                <div class="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>> <input class="span2"  id="fecha_p" type="text" name="fecha_p">
+                </div>
             </td>
-            <td>monto:</td>
-            <td><input type="text" name="monto_p" id="monto_p" ></td>
+            <td><div class="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>>monto:</div></td>
             <td>
-             
-                <button  name="add_cronograma" id="add_cronograma" type="button" class="btn btn-inverse active" value="1"><i class="icon-ok icon-white"></i></button>
+                <div class="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>>
+                <input type="text" name="monto_p" id="monto_p" >
+                </div>
+            </td>
+            <td>
+              
+              <div class="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>>
+                <button  name="add_cronograma" id="add_cronograma" type="button" class="btn btn-success active" value="1"><i class="icon-ok icon-white"></i></button>
+                </div>
             </td>
             
         </tr>
         <tr>
             <td></td>
         <td>
-            <div id="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>>
+            <div class="capa_cronograma" <?php if($this->data_cronograma!=null){}else{echo "style='display:none;'";}?>>
             <table id="cronograma" id="cronograma" align="center" class="table">
                 <thead>
                 <tr>
@@ -196,6 +189,7 @@
                     echo "</tr>";
                              }
                     ?>
+                   
                 </tbody>
             </table>
             </div>
@@ -221,7 +215,86 @@
     </table>
 </form>
 </div>
-
+<!---->
+<div id="buscarAlumno" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="width: 700px; top: -10px;  height: 650px;"  >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Lista Alumno</h3>
+        </div>
+    
+      
+    <div class="modal-body">
+        <div id="datos">
+          <div class="container" style="margin-top: 10px; width: 550px; height: 500px;">
+        <table  cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="busqueda_alumno">
+            <thead>
+            <tr>
+                <td>Codigo Alumno</td>
+                <td>dni</td>
+                <td>Nombres</td>
+                <td>Accion</td>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <?php 
+                foreach ($this->data_alumnos as $k)
+                              {
+                    $nombres="agregar(0)";
+                    echo "<tr class=''>";
+                    echo "<td style='width:10px;'>".$k[0]."</td>";
+                    echo "<td style='width:20px;'>".$k[1]."</td>";
+                    echo "<td style='width:300px;'>".$k[2]."</td>";?>
+                   <td style="width:10px;">
+                    <a class="btn btn-danger add_alumn" href="javascript:void(0)" onClick="agregar_alumno(<?php echo $k[0]; ?>,'<?php echo $k[2]; ?>')" ><i class="icon-arrow-down"></i></a>
+                   </td>
+        
+                              <?php } ?>
+            
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</div>
+<!---->
+<div id="buscarApoderado" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="width: 700px; top: -10px;  height: 650px;"  >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Registrar Apoderado</h3>
+        </div>
+    
+      
+    <div class="modal-body">
+        <div id="datos">
+          <div class="container" style="margin-top: 10px; width: 550px; height: 500px;">
+        <table  cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="busqueda_apoderado">
+            <thead>
+            <tr>
+                <td>Codigo Apoderado</td>
+                <td>dni</td>
+                <td>Nombres</td>
+                <td>Accion</td>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <?php 
+                foreach ($this->data_apoderados as $k)
+                              {
+                    echo "<tr class=''>";
+                    echo "<td style='width:10px;'>".$k[0]."</td>";
+                    echo "<td style='width:20px;'>".$k[1]."</td>";
+                    echo "<td style='width:300px;'>".$k[2]."</td>";
+                    ?>
+            <td style="width:10px;"><a class="btn btn-danger delete"  href="javascript:void(0)" onclick="agregar_apoderado(<?php echo $k[0]; ?>,'<?php echo $k[2]; ?>')"><i class="icon-arrow-down"></i></a></td>
+                              <?}?>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</div>
   <!---->
   <div id="modalNuevoAlumno" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-35%;width: 62% ">
         <div class="modal-header">
@@ -382,8 +455,8 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-inverse" id="reg_alumno">Guardar</button>
-            <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="reg_alumno">Guardar</button>
+            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
     </div>
         
@@ -457,8 +530,8 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-inverse" id="reg_apoderado">Guardar</button>
-            <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="reg_apoderado">Guardar</button>
+            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
         </div>
     </div>
         

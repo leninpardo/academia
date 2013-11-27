@@ -25,7 +25,7 @@
                      HTML = HTML + '<td>'+datos[i][4]+'</td>'
                     var editar=url+'matricula/editar/'+datos[i][0];
                     var eliminar=url+'matricula/eliminar/'+datos[i][0];
-                    HTML = HTML + '<td><a target="_blank" href="'+url+'reportes/ticket_pago/\''+datos[i][0]+'\'" class="btn btn-default"><i class="icon-print"></i> Imprimir</a>';
+                    HTML = HTML + '<td><a style="margin-right:4px" href="javascript:void(0)" onclick="editar(\''+editar+'\')" class="btn btn-success"><i class="icon-pencil icon-white"></i> Editar</a>';
                     HTML = HTML + '<a href="javascript:void(0)" onclick="eliminar(\''+eliminar+'\')"class="btn btn-danger"><i class="icon-remove icon-white"></i> Eliminar</a>';
                     HTML = HTML + '</td>';
                     HTML = HTML + '</tr>';

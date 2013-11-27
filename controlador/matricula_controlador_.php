@@ -89,9 +89,8 @@ class matricula_controlador extends controller{
             }else{
                 $this->_alumno->idinstitucioneducativa = 6;
             }
-           $r=$this->_alumno->inserta();
-           $stm=$r[0]->fetchAll();
-           echo json_encode($stm[0][0]);
+           $this->_alumno->inserta();
+           echo json_encode(array('x_idcliente'=>$datos[0]['X_IDCLIENTE'])); 
     }
 
       public function inserta_apo() {
@@ -191,7 +190,7 @@ or email LIKE'%$buscar%'");
         }                  
         }
        //para iniciar el frm
-        $verif_caja=$this->_matricula->getQuery("SELECT * from caja where id_empleado=".session::get('idempleado')." and estado=1 and fecha=CURRENT_DATE() ");
+        $verif_caja=$this->_matricula->getQuery("SELECT * from caja where id_empleado=1 and estado=1 and fecha=CURRENT_DATE() ");
       
        foreach ($verif_caja as $vfc)
             {
@@ -199,8 +198,9 @@ or email LIKE'%$buscar%'");
             }
        if($flag)
             {
-        $this->_vista->data_alumnos=$this->_matricula->getQuery("SELECT Alumno_ID,dni,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno) as nombres from alumno");
-        $this->_vista->data_apoderados=$this->_matricula->getQuery("SELECT Apoderado_ID,dni,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno) as nombres from apoderado");
+        $this->_vista->data_alumnos=$this->_matricula->getQuery("SELECT Alumno_ID,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno) as nombres
+from alumno");
+        $this->_vista->data_apoderados=$this->_matricula->getQuery("SELECT Apoderado_ID,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno) as nombres from apoderado");
         $this->_vista->data_cursos=$this->_matricula->getQuery("select * from cursos");
         $this->_vista->data_horarios=$this->_matricula->getQuery("select * from horario");
       
@@ -219,7 +219,6 @@ or email LIKE'%$buscar%'");
         $this->_vista->titulo = 'Registrar Matriculas';
         $this->_vista->action = BASE_URL . 'matricula/nuevo';
         $this->_vista->setJs(array('funciones_form','jquery-ui.min'));
-        $this->_vista->setCss(array('DT_bootstrap'));
         $this->_vista->renderizar('form');
             }
             else {
@@ -246,7 +245,7 @@ or email LIKE'%$buscar%'");
                          else{
                               $res=1;
                          }
-             $datos = array(2,$estudiante, $apoderado,$empleado, $res,$monto_incial, $total,$obs);
+             $datos = array(1,$estudiante, $apoderado,$empleado, $res,$monto_incial, $total,$obs);
         $r = $this->_matricula->get_consulta("usp_matricula", $datos);
          if ($r[1] == '') {
             $stmt = $r[0];
@@ -254,8 +253,6 @@ or email LIKE'%$buscar%'");
              $idm=$data[0][0];
 
                 //guardar detalle cursos
-              $this->_matricula->getQuery("delete from cursos_matriculas where matricula_id=".$id);
-              
               for($i=0;$i<count($_POST['cursos_id']);$i++){
 
                   $c=$_POST['cursos_id'][$i];
@@ -264,8 +261,6 @@ or email LIKE'%$buscar%'");
                $r = $this->_matricula->get_consulta("usp_cursos_matricula",$datos);
               }
               //guardar los horarios
-                    $this->_matricula->getQuery("delete from detalle_horario where matricula_id=".$id);
-              
                  for($i=0;$i<count($_POST['horario_id']);$i++){
 
                   $h=$_POST['horario_id'][$i];
@@ -276,10 +271,9 @@ or email LIKE'%$buscar%'");
               //guardar los cronogramas de pagos
                if($reserva!=null)
                 {
-                     
-                 $this->_matricula->getQuery("delete from cronograma_pago where matricula_id=".$id);
-                   
-                 for($i=0;$i<count($_POST['monto']);$i++){
+
+
+                   for($i=0;$i<count($_POST['monto']);$i++){
 
                   $m=$_POST['monto'][$i];
                   //op int,fecha date, monto decimal(10,2),matricula int
@@ -287,8 +281,8 @@ or email LIKE'%$buscar%'");
 
                $r = $this->_matricula->get_consulta("usp_cronograma_pago",$datos);
               }
+
                }
-               
                 $this->redireccionar('matricula');
         } else {
             die($r[1]);
@@ -312,17 +306,10 @@ WHERE Matricula_ID=$id");
 from alumno");
         $this->_vista->data_apoderados=$this->_matricula->getQuery("SELECT Apoderado_ID,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno) as nombres from apoderado");
         $this->_vista->data_cursos=$this->_matricula->getQuery("select * from cursos");
-        /////////////////////////////////////////////////////
-        $this->_vista->data_horarios=$this->_matricula->getQuery("SELECT dt.horario_id,h.turno,h.Dia,h.Hora_inicio,h.hora_fin 
-from detalle_horario dt INNER JOIN horario h on(dt.horario_id=h.Horario_ID) where matricula_id=".$id);
-///////////////////////////////////////
-$this->_vista->data_det_horario=$this->_matricula->getQuery("SELECT Horario_ID,turno,Dia,Hora_inicio,hora_fin from horario
-WHERE ( Horario_ID <>
-(SELECT horario_id as idh from detalle_horario WHERE  matricula_id=$id))");
- 
-        /////////////////////////////////77
+        $this->_vista->data_horarios=$this->_matricula->getQuery("select * from horario");
+
         $this->_vista->titulo = 'Registrar Matriculas';
-        $this->_vista->action = BASE_URL . 'matricula/editar';
+        $this->_vista->action = BASE_URL . 'matricula/nuevo';
         $this->_vista->setJs(array('funciones_form','jquery-ui.min'));
         $this->_vista->renderizar('form');
             }

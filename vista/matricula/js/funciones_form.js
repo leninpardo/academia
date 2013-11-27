@@ -62,7 +62,9 @@ $(function() {
                 //$("#id_cliente").val(datos.x_idcliente);
                // $("#cliente").val($("#nombre").val() + ' ' + $("#apellidos").val());
             //$("#nombre,#apellidos,#dni,#fechanac,#telefononat,#email,#estado_civil,#profesion,#ciudades,#direccion").val('');
+            alert(datos);
             }, 'json');
+            
             $('#modalNuevoAlumno').modal('hide');
         }
         return false;
@@ -95,10 +97,6 @@ $(function() {
         }
         return false;
     });
-    
-    
-    
-    
     
     $( "#descripcion" ).focus();
     
@@ -142,7 +140,8 @@ $(function() {
         return false;
     });
     $("#reserva").click(function(){
-        $("#capa_cronograma").css("display", "block");
+       
+        $(".capa_cronograma").css("display", "block");
     });
 
    $("#cursos").change(function(){
@@ -183,11 +182,24 @@ $(function() {
         var i = $(this).parent().parent().index();
         $("#lista_cursos tbody tr:eq(" + i + ")").remove();
     });
+    
+    /*$(".add_alumn").live('click',function(){
+         var i = $(this).parent().parent().index();
+     
+        
+    });*/
+    
 /*$('#fecha_p').datetimepicker({
       language: 'pt-BR'
     });*/
  
- 
+ /*
+ $("#pago").keyup(function(){
+     monto=$("#pago").val();
+      total=$("#total").val();
+     
+ });
+ */
    $("#add_cronograma").click(function(){
      fecha=$("#fecha_p").val();
      monto=$("#monto_p").val();
@@ -201,9 +213,9 @@ $(function() {
        
        if(total=="")
            {
-                inicial=$("#pago").val();
-                if(inicial==""){inicial=0;}
-               total=inicial;
+                /*inicial=$("#pago").val();
+                if(inicial==""){inicial=0;}*/
+               total=0;
            }
         if(bval)
             {
@@ -241,3 +253,18 @@ $(function() {
    });
      
 });
+function agregar_alumno(id, nombre)
+{
+ 
+  $("#name_alumno").val(nombre);
+  $("#estudiante").val(id);
+  
+  $("#buscarAlumno").modal("hide");
+  //$("#name_apoderado").val(nombre);
+}
+function agregar_apoderado(id,nombre)
+{
+  $("#name_apoderado").val(nombre);
+  $("#apoderado").val(id);
+    $("#buscarApoderado").modal("hide");
+}
